@@ -18,15 +18,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zhisheng的博客</title>
+  <title>Elasticsearch 系列文章（二）：全文搜索引擎 Elasticsearch 集群搭建入门教程 | zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="介绍ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于 RESTful web 接口。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。基百科、Stack Overflow、Github">
+<meta name="keywords" content="ElasticSearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch 系列文章（二）：全文搜索引擎 Elasticsearch 集群搭建入门教程">
+<meta property="og:url" content="http://yoursite.com/2017/09/09/Elasticsearch-install/index.html">
 <meta property="og:site_name" content="zhisheng的博客">
+<meta property="og:description" content="介绍ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于 RESTful web 接口。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。基百科、Stack Overflow、Github">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/test.jpg-1">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/test-on-bro.jpg-1">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353133910_8134.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353133911_9624.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353134135_7264.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353134135_5729.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201211/17/1353133911_8912.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg">
+<meta property="og:updated_time" content="2018-03-24T02:25:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhisheng的博客">
+<meta name="twitter:title" content="Elasticsearch 系列文章（二）：全文搜索引擎 Elasticsearch 集群搭建入门教程">
+<meta name="twitter:description" content="介绍ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于 RESTful web 接口。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。基百科、Stack Overflow、Github">
+<meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/test.jpg-1">
   
     <link rel="alternative" href="/atom.xml" title="zhisheng的博客" type="application/atom+xml">
   
@@ -194,22 +208,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-springboot_SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Elasticsearch-install" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/springboot_SpringApplication/">Spring Boot 2.0系列文章(七)：SpringApplication 深入探索</a>
+    <h1 class="article-title" itemprop="name">
+      Elasticsearch 系列文章（二）：全文搜索引擎 Elasticsearch 集群搭建入门教程
     </h1>
   
 
         
-        <a href="/2018/04/30/springboot_SpringApplication/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2017/09/09/Elasticsearch-install/" class="archive-article-date">
+  	<time datetime="2017-09-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-09</time>
 </a>
         
       </header>
@@ -217,20 +229,246 @@ var _hmt = _hmt || [];
 
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-JDK-1-8"><span class="toc-number">3.</span> <span class="toc-text">安装 JDK 1.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Maven"><span class="toc-number">4.</span> <span class="toc-text">安装 Maven</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-hosts"><span class="toc-number">5.</span> <span class="toc-text">配置 hosts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-SSH-免密码登录"><span class="toc-number">6.</span> <span class="toc-text">设置 SSH 免密码登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-ElasticSearch"><span class="toc-number">7.</span> <span class="toc-text">安装 ElasticSearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-IK-中文分词"><span class="toc-number">8.</span> <span class="toc-text">安装 IK 中文分词</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IK-带有两个分词器"><span class="toc-number">8.1.</span> <span class="toc-text">IK 带有两个分词器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ik-max-word"><span class="toc-number">8.1.1.</span> <span class="toc-text">ik_max_word</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ik-smart"><span class="toc-number">8.1.2.</span> <span class="toc-text">ik_smart</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-head-插件"><span class="toc-number">9.</span> <span class="toc-text">安装 head 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-git"><span class="toc-number">9.1.</span> <span class="toc-text">安装 git</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装nodejs"><span class="toc-number">9.2.</span> <span class="toc-text">安装nodejs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到问题"><span class="toc-number">10.</span> <span class="toc-text">遇到问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">11.</span> <span class="toc-text">最后</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqxbkmfds2j31hc0oegze.jpg" alt="sunset-3325080_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/#more">more >></a>
-        
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于 RESTful web 接口。Elasticsearch 是用 Java 开发的，并作为 Apache 许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。基百科、Stack Overflow、Github 都采用它。</p>
+<p>本文从零开始，讲解如何使用 Elasticsearch 搭建自己的全文搜索引擎。每一步都有详细的说明，大家跟着做就能学会。<br><a id="more"></a></p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>1、VMware</p>
+<p>2、Centos 6.6</p>
+<p>3、Elasticsearch 5.5.2</p>
+<p>4、JDK 1.8</p>
+<p>VMware 安装以及在 VMware 中安装 Centos 这个就不说了，环境配置直接默认就好，不过分配给机器的内存最好设置大点（建议 2G），</p>
+<p>使用 dhclient 命令来自动获取 IP 地址，查看获取的 IP 地址则使用命令 ip addr 或者 ifconfig ，则会看到网卡信息和 lo 卡信息。</p>
+<p>给虚拟机额中的 linux 设置固定的  ip（因为后面发现每次机器重启后又要重新使用 dhclient 命令来自动获取 IP 地址）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+<p>修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onboot=yes</span><br><span class="line">bootproto=static</span><br></pre></td></tr></table></figure>
+<p>增加：（下面可设置可不设置）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IPADDR=192.168.1.113            网卡IP地址</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
+<p>设置好之后，把网络服务重启一下， <code>service network restart</code></p>
+<p>修改 ip 地址参考： <a href="http://jingyan.baidu.com/article/e4d08ffdd417660fd3f60d70.html" target="_blank" rel="noopener">http://jingyan.baidu.com/article/e4d08ffdd417660fd3f60d70.html</a></p>
+<p>大环境都准备好了，下面开始安装步骤：</p>
+<h3 id="安装-JDK-1-8"><a href="#安装-JDK-1-8" class="headerlink" title="安装 JDK 1.8"></a>安装 JDK 1.8</h3><p>先卸载自带的 openjdk，查找  openjdk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep java</span><br></pre></td></tr></table></figure>
+<p>卸载 openjdk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y remove  java-1.7.0-openjdk-1.7.0.65-2.5.1.2.el65.x8664</span><br><span class="line">yum -y remove java-1.6.0-openjdk-1.6.0.0-11.1.13.4.el6.x86_64</span><br></pre></td></tr></table></figure>
+<p><strong>解压 JDK 安装包：</strong></p>
+<p>附上jdk1.8的下载地址：<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+<p>解压完成后配置一下环境变量就 ok</p>
+<p>1、在/usr/local/下创建Java文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/                                    进入目录</span><br><span class="line">mkdir java                                     新建java目录</span><br></pre></td></tr></table></figure>
+<p>2、文件夹创建完毕，把安装包拷贝到 Java 目录中，然后解压 jdk 到当前目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/jdk-8u144-linux-x64.tar.gz /usr/local/java/    **注意匹配你自己的文件名**  拷贝到java目录</span><br><span class="line">tar -zxvf jdk-8u144-linux-x64.tar.gz       解压到当前目录（Java目录）</span><br></pre></td></tr></table></figure>
+<p>3、解压完之后，Java目录中会出现一个jdk1.8.0_144的目录，这就解压完成了。之后配置一下环境变量。<br>编辑/etc/下的profile文件，配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile                  进入profile文件的编辑模式</span><br><span class="line"></span><br><span class="line">在最后边追加一下内容(**配置的时候一定要根据自己的目录情况而定哦！**)</span><br><span class="line"></span><br><span class="line"> JAVA_HOME=/usr/local/java/jdk1.8.0_144</span><br><span class="line"> CLASSPATH=$JAVA_HOME/lib/</span><br><span class="line"> PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"> export PATH JAVA_HOME CLASSPATH</span><br></pre></td></tr></table></figure>
+<p>之后保存并退出文件之后。</p>
+<p>让文件生效：<code>source /etc/profile</code></p>
+<p>在控制台输入Java 和 Java -version 看有没有信息输出，如下： <code>java -version</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_144&quot;</span><br><span class="line"> Java(TM) SE Runtime Environment (build 1.8.0_60-b27)</span><br><span class="line"> Java HotSpot(TM) Client VM (build 25.60-b23, mixed mode)</span><br></pre></td></tr></table></figure>
+<p>能显示以上信息，就说明 JDK 安装成功啦</p>
+<hr>
+<h3 id="安装-Maven"><a href="#安装-Maven" class="headerlink" title="安装 Maven"></a>安装 Maven</h3><p>因为后面可能会用到 maven ，先装上这个。</p>
+<p>1、下载 maven</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz</span><br></pre></td></tr></table></figure>
+<p>2、解压至 /usr/local 目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-maven-3.2.5-bin.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3、配置公司给的配置</p>
+<p>替换成公司给的 setting.xml 文件，修改关于本地仓库的位置, 默认位置: ${user.home}/.m2/repository</p>
+<p>4、配置环境变量etc/profile 最后添加以下两行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export MAVEN_HOME=/usr/local/apache-maven-3.2.5</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;MAVEN_HOME&#125;/bin</span><br></pre></td></tr></table></figure>
+<p>5、测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# mvn -v</span><br><span class="line">Apache Maven 3.2.5 (12a6b3acb947671f09b81f49094c53f426d8cea1; 2014-12-14T09:29:23-08:00)</span><br><span class="line">Maven home: /usr/local/apache-maven-3.2.5</span><br></pre></td></tr></table></figure>
+<p>VMware 虚拟机里面的三台机器 IP 分别是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.153.133</span><br><span class="line">192.168.153.134</span><br><span class="line">192.168.153.132</span><br></pre></td></tr></table></figure>
+<h3 id="配置-hosts"><a href="#配置-hosts" class="headerlink" title="配置 hosts"></a>配置 hosts</h3><p>在 /etc/hosts下面编写：ip  node 节点的名字（域名解析）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/hosts</span><br></pre></td></tr></table></figure>
+<p>新增：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.153.133  es1</span><br><span class="line">192.168.153.134  es2</span><br><span class="line">192.168.153.132  es3</span><br></pre></td></tr></table></figure>
+<h3 id="设置-SSH-免密码登录"><a href="#设置-SSH-免密码登录" class="headerlink" title="设置 SSH 免密码登录"></a>设置 SSH 免密码登录</h3><p>安装expect命令 ： yum -y install expect</p>
+<p>将 ssh_p2p.jar 随便解压到任何目录下： (这个 jar 包可以去网上下载)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip ssh_p2p.zip</span><br></pre></td></tr></table></figure>
+<p>修改 resource 的 ip 值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /ssh_p2p/deploy_data/resource  （各个节点和账户名，密码，free代表相互都可以无密码登陆）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#设置为你每台虚拟机的ip地址，用户名，密码</span><br><span class="line">address=(</span><br><span class="line">&quot;192.168.153.133,root,123456,free&quot;</span><br><span class="line">&quot;192.168.153,134,root,123456,free&quot;</span><br><span class="line">&quot;192.168.153.132,root,123456,free&quot;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>修改 start.sh 的运行权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x start.sh</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<p>ssh ip地址  （测试是否可以登录）</p>
+<h3 id="安装-ElasticSearch"><a href="#安装-ElasticSearch" class="headerlink" title="安装 ElasticSearch"></a>安装 ElasticSearch</h3><p>下载地址： <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/downloads/elasticsearch</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz</span><br><span class="line">cd /usr/local</span><br><span class="line">tar -zxvf   elasticsearch-5.5.2.tar.gz</span><br></pre></td></tr></table></figure>
+<p><code>su tzs</code>  切换到 tzs 用户下 ( 默认不支持 root 用户)</p>
+<p><code>sh /usr/local/elasticsearch/bin/elasticsearch -d</code>  其中 -d 表示后台启动</p>
+<p>在 vmware 上测试是否成功：curl <a href="http://localhost:9200/" target="_blank" rel="noopener">http://localhost:9200/</a></p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/test.jpg-1" alt="test"></p>
+<p>出现如上图这样的效果，就代表已经装好了。</p>
+<p>elasticsearch 默认 restful-api 的端口是 9200 不支持 IP 地址，也就是说无法从主机访问虚拟机中的服务，只能在本机用 <a href="http://localhost:9200" target="_blank" rel="noopener">http://localhost:9200</a> 来访问。如果需要改变，需要修改配置文件 /usr/local/elasticsearch/config/elasticsearch.yml 文件，加入以下两行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">network.bind_host: 0.0.0.0</span><br><span class="line">network.publish_host: _nonloopback:ipv4</span><br></pre></td></tr></table></figure>
+<p>或去除 network.host 和 http.port 之前的注释，并将 network.host 的 IP 地址修改为本机外网 IP。然后重启，Elasticsearch</p>
+<p>关闭方法（输入命令：<code>ps -ef | grep elasticsearch</code> ，找到进程，然后 kill 掉就行了。</p>
+<p>如果外网还是不能访问，则有可能是防火墙设置导致的 ( 关闭防火墙：<code>service iptables stop</code> )</p>
+<p>修改配置文件：<code>vim config/elasticsearch.yml</code></p>
+<p>cluster.name : my-app  (集群的名字，名字相同的就是一个集群)</p>
+<p>node.name : es1  （节点的名字, 和前面配置的 hosts 中的 name 要一致）</p>
+<p>path.data: /data/elasticsearch/data  （数据的路径。没有要创建（<code>mkdir -p /data/elasticsearch/{data,logs}</code>），并且给执行用户权限 <code>chown tzs /data/elasticsearch/{data,logs} -R</code> ）<br>path.logs: /data/elasticsearch/logs    （数据 log 信息的路径，同上）<br>network.host: 0.0.0.0    //允许外网访问，也可以是自己的ip地址<br>http.port: 9200        //访问的端口<br>discovery.zen.ping.unicast.hosts: [“192.168.153.133”, “192.168.153.134”, “192.168.153.132”]   //各个节点的ip地址</p>
+<p>记得需要添加上：（这个是安装 head 插件要用的， 目前不需要）<br>http.cors.enabled: true<br>http.cors.allow-origin: “*”</p>
+<p>最后在外部浏览器的效果如下图：</p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/test-on-bro.jpg-1" alt="test-on-bro"></p>
+<h3 id="安装-IK-中文分词"><a href="#安装-IK-中文分词" class="headerlink" title="安装 IK 中文分词"></a>安装 IK 中文分词</h3><p>可以自己下载源码使用 maven 编译，当然如果怕麻烦可以直接下载编译好的</p>
+<p><a href="https://github.com/medcl/elasticsearch-analysis-ik/releases/tag/v5.5.2" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases/tag/v5.5.2</a></p>
+<p>注意下载对应的版本放在 plugins 目录下</p>
+<p>解压</p>
+<p><code>unzip elasticsearch-analysis-ik-5.5.2.zip</code></p>
+<p>在 es 的 plugins 下新建 ik 目录</p>
+<p><code>mkdir ik</code></p>
+<p>将刚才解压的复制到ik目录下</p>
+<p><code>cp -r elasticsearch/* ik</code></p>
+<p>删除刚才解压后的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf elasticsearch</span><br><span class="line">rm -rf elasticsearch-analysis-ik-5.5.2.zip</span><br></pre></td></tr></table></figure>
+<h4 id="IK-带有两个分词器"><a href="#IK-带有两个分词器" class="headerlink" title="IK 带有两个分词器"></a>IK 带有两个分词器</h4><p><strong>ik_max_word</strong> ：会将文本做最细粒度的拆分；尽可能多的拆分出词语</p>
+<p><strong>ik_smart</strong>：会做最粗粒度的拆分；已被分出的词语将不会再次被其它词语占有</p>
+<p>安装完 IK 中文分词器后（当然不止这种中文分词器，还有其他的，可以参考我的文章  <a href="http://www.54tianzhisheng.cn/2017/09/07/Elasticsearch-analyzers/" target="_blank" rel="noopener">Elasticsearch 默认分词器和中分分词器之间的比较及使用方法</a>），测试区别如下：</p>
+<h5 id="ik-max-word"><a href="#ik-max-word" class="headerlink" title="ik_max_word"></a>ik_max_word</h5><p>curl -XGET ‘<a href="http://192.168.153.134:9200/_analyze?pretty&amp;analyzer=ik_max_word" target="_blank" rel="noopener">http://192.168.153.134:9200/_analyze?pretty&amp;analyzer=ik_max_word</a>‘ -d ‘联想是全球最大的笔记本厂商’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;tokens&quot; : [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;联想&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 0,</span><br><span class="line">      &quot;end_offset&quot; : 2,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 0</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;是&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 2,</span><br><span class="line">      &quot;end_offset&quot; : 3,</span><br><span class="line">      &quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">      &quot;position&quot; : 1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;全球&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 3,</span><br><span class="line">      &quot;end_offset&quot; : 5,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 2</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;最大&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 5,</span><br><span class="line">      &quot;end_offset&quot; : 7,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;的&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 7,</span><br><span class="line">      &quot;end_offset&quot; : 8,</span><br><span class="line">      &quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">      &quot;position&quot; : 4</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;笔记本&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 8,</span><br><span class="line">      &quot;end_offset&quot; : 11,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 5</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;笔记&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 8,</span><br><span class="line">      &quot;end_offset&quot; : 10,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 6</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;本厂&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 10,</span><br><span class="line">      &quot;end_offset&quot; : 12,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 7</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;厂商&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 11,</span><br><span class="line">      &quot;end_offset&quot; : 13,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 8</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="ik-smart"><a href="#ik-smart" class="headerlink" title="ik_smart"></a>ik_smart</h5><p>curl -XGET ‘<a href="http://localhost:9200/_analyze?pretty&amp;analyzer=ik_smart" target="_blank" rel="noopener">http://localhost:9200/_analyze?pretty&amp;analyzer=ik_smart</a>‘ -d ‘联想是全球最大的笔记本厂商’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;tokens&quot; : [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;联想&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 0,</span><br><span class="line">      &quot;end_offset&quot; : 2,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 0</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;是&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 2,</span><br><span class="line">      &quot;end_offset&quot; : 3,</span><br><span class="line">      &quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">      &quot;position&quot; : 1</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;全球&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 3,</span><br><span class="line">      &quot;end_offset&quot; : 5,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 2</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;最大&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 5,</span><br><span class="line">      &quot;end_offset&quot; : 7,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 3</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;的&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 7,</span><br><span class="line">      &quot;end_offset&quot; : 8,</span><br><span class="line">      &quot;type&quot; : &quot;CN_CHAR&quot;,</span><br><span class="line">      &quot;position&quot; : 4</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;笔记本&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 8,</span><br><span class="line">      &quot;end_offset&quot; : 11,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 5</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;token&quot; : &quot;厂商&quot;,</span><br><span class="line">      &quot;start_offset&quot; : 11,</span><br><span class="line">      &quot;end_offset&quot; : 13,</span><br><span class="line">      &quot;type&quot; : &quot;CN_WORD&quot;,</span><br><span class="line">      &quot;position&quot; : 6</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="安装-head-插件"><a href="#安装-head-插件" class="headerlink" title="安装 head 插件"></a>安装 head 插件</h3><p>elasticsearch-head 是一个 elasticsearch 的集群管理工具，它是完全由 html5 编写的独立网页程序，你可以通过插件把它集成到 es。</p>
+<p>效果如下图：（图片来自网络）</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353133910_8134.jpg" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353133911_9624.jpg" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353134135_7264.jpg" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353134135_5729.jpg" alt=""></p>
+<p><img src="http://img.my.csdn.net/uploads/201211/17/1353133911_8912.jpg" alt=""></p>
+<h4 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum remove git</span><br><span class="line">yum install git</span><br><span class="line">git clone git://github.com/mobz/elasticsearch-head.git   拉取 head 插件到本地，或者直接在 GitHub 下载 压缩包下来</span><br></pre></td></tr></table></figure>
+<h4 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h4><p>先去官网下载 node-v8.4.0-linux-x64.tar.xz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -Jxv -f  node-v8.4.0-linux-x64.tar.xz</span><br><span class="line">mv node-v8.4.0-linux-x64  node</span><br></pre></td></tr></table></figure>
+<p>环境变量设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/profile</span><br></pre></td></tr></table></figure>
+<p>新增：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export NODE_HOME=/opt/node</span><br><span class="line">export PATH=$PATH:$NODE_HOME/bin</span><br><span class="line">export NODE_PATH=$NODE_HOME/lib/node_modules</span><br></pre></td></tr></table></figure>
+<p>使配置文件生效（这步很重要，自己要多注意这步）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>测试是否全局可用了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv elasticsearch-head head</span><br><span class="line">cd head/</span><br><span class="line">npm install -g grunt-cli</span><br><span class="line">npm install</span><br><span class="line">grunt server</span><br></pre></td></tr></table></figure>
+<p>再 es 的配置文件中加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<p>在浏览器打开 <code>http://192.168.153.133:9100/</code>  就可以看到效果了，</p>
+<h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><p>把坑都走了一遍，防止以后再次入坑，特此记录下来</p>
+<p><strong>1、ERROR Could not register mbeans java.security.AccessControlException: access denied (“javax.management.MBeanTrustPermission” “register”)</strong></p>
+<p>改变 elasticsearch 文件夹所有者到当前用户</p>
+<p>sudo chown -R noroot:noroot elasticsearch</p>
+<p>这是因为 elasticsearch 需要读写配置文件，我们需要给予 config 文件夹权限，上面新建了 elsearch 用户，elsearch 用户不具备读写权限，因此还是会报错，解决方法是切换到管理员账户，赋予权限即可：</p>
+<p>sudo -i</p>
+<p>chmod -R 775 config</p>
+<p><strong>2、[WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]</strong><br><strong>org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root</strong></p>
+<p>原因是elasticsearch默认是不支持用root用户来启动的。</p>
+<p>解决方案一：Des.insecure.allow.root=true</p>
+<p>修改/usr/local/elasticsearch-2.4.0/bin/elasticsearch，</p>
+<p>添加 ES_JAVA_OPTS=”-Des.insecure.allow.root=true”</p>
+<p>或执行时添加： sh /usr/local/elasticsearch-2.4.0/bin/elasticsearch -d -Des.insecure.allow.root=true</p>
+<p>注意：正式环境用root运行可能会有安全风险，不建议用root来跑。</p>
+<p>解决方案二：添加专门的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd elastic</span><br><span class="line">chown -R elastic:elastic  elasticsearch-2.4.0</span><br><span class="line">su elastic</span><br><span class="line">sh /usr/local/elasticsearch-2.4.0/bin/elasticsearch -d</span><br></pre></td></tr></table></figure>
+<p><strong>3、UnsupportedOperationException: seccomp unavailable: requires kernel 3.5+ with CONFIG_SECCOMP and CONFIG_SECCOMP_FILTER compiled in</strong></p>
+<p>只是警告，使用新的linux版本，就不会出现此类问题了。</p>
+<p><strong>4、ERROR: [4] bootstrap checks failed</strong><br><strong>[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]</strong></p>
+<p>原因：无法创建本地文件问题,用户最大可创建文件数太小</p>
+<p>解决方案：切换到 root 用户，编辑 limits.conf 配置文件， 添加类似如下内容：</p>
+<p>vim /etc/security/limits.conf</p>
+<p>添加如下内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*  soft nofile 65536</span><br><span class="line">* hard nofile 131072</span><br><span class="line">* soft nproc 2048</span><br><span class="line">* hard nproc 4096</span><br></pre></td></tr></table></figure>
+<p><strong>[2]: max number of threads [1024] for user [tzs] is too low, increase to at least [2048]</strong></p>
+<p>原因：无法创建本地线程问题,用户最大可创建线程数太小</p>
+<p>解决方案：切换到root用户，进入limits.d目录下，修改90-nproc.conf 配置文件。</p>
+<p>vim /etc/security/limits.d/90-nproc.conf</p>
+<p>找到如下内容：</p>
+<ul>
+<li>soft nproc 1024</li>
+</ul>
+<p>修改为</p>
+<ul>
+<li>soft nproc 2048</li>
+</ul>
+<p><strong>[3]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</strong></p>
+<p>原因：最大虚拟内存太小</p>
+<p>root用户执行命令：</p>
+<p><code>sysctl -w vm.max_map_count=262144</code></p>
+<p>或者修改 /etc/sysctl.conf 文件，添加 “vm.max_map_count”设置<br>设置后，可以使用<br>$ sysctl -p</p>
+<p><strong>[4]: system call filters failed to install; check the logs and fix your configuration or disable system call filters at your own risk</strong></p>
+<p>原因：Centos6不支持SecComp，而ES5.4.1默认bootstrap.system_call_filter为true进行检测，所以导致检测失败，失败后直接导致ES不能启动。<br>详见 ：<a href="https://github.com/elastic/elasticsearch/issues/22899" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch/issues/22899</a></p>
+<p>解决方法：在elasticsearch.yml中新增配置bootstrap.system_call_filter，设为false，注意要在Memory下面:<br>bootstrap.memory_lock: false<br>bootstrap.system_call_filter: false</p>
+<p><strong>5、 java.lang.IllegalArgumentException: property [elasticsearch.version] is missing for plugin [head]</strong></p>
+<p>再 es 的配置文件中加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>整个搭建的过程全程自己手动安装，不易，如果安装很多台机器，是否可以写个脚本之类的自动搭建呢？可以去想想的。首发于：<a href="http://www.54tianzhisheng.cn/2017/09/09/Elasticsearch-install/" target="_blank" rel="noopener">http://www.54tianzhisheng.cn/2017/09/09/Elasticsearch-install/</a>   ，转载请注明出处，谢谢配合！</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg" alt=""></p>
+
       
 
       <!-- <div>
   			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
   		</div> -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -241,11 +479,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ElasticSearch</a>
         		</li>
       		
 		</ul>
@@ -254,18 +488,83 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/09/Elasticsearch-install/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/09/15/linux-lua-lfs-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux 下 lua 开发环境安装及安装 luafilesystem
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/08/Elasticsearch-analyzers/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Elasticsearch 系列文章（一）：Elasticsearch 默认分词器和中分分词器之间的比较及使用方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -273,557 +572,30 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Distributed_lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/Distributed_lock/">分布式锁看这篇就够了</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2018/04/24/Distributed_lock/" class="archive-article-date">
-  	<time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqp2lqscrwj31hc0zk46a.jpg" alt="meadow-811339_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="Elasticsearch 系列文章（二）：全文搜索引擎 Elasticsearch 集群搭建入门教程"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    <article id="post-SpringBootApplication-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/SpringBootApplication-annotation/">Spring Boot 2.0系列文章(六)：Spring Boot 2.0中SpringBootApplication注解详解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/SpringBootApplication-annotation/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqifa86vplj31hc0p0n7e.jpg" alt="nature-3201015_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-spring_boot2_project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/spring_boot2_project/">Spring Boot 2.0系列文章(五)：Spring Boot 2.0 项目源码结构预览</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/spring_boot2_project/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqhraflay7j31hc0zk0z1.jpg" alt="fireworks-2585843_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-springboot2_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/springboot2_code/">Spring Boot 2.0系列文章(四)：Spring Boot 2.0 源码阅读环境搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/springboot2_code/" class="archive-article-date">
-  	<time datetime="2018-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqdma0kpk1j31hc0zkqox.jpg" alt="night-photograph-2183637_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring_Boot_2.0_Configuration_Changelog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">Spring Boot 2.0系列文章(三)：Spring Boot 2.0 配置改变</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/" class="archive-article-date">
-  	<time datetime="2018-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqc4n57tj4j31hc0zktmm.jpg" alt="pocket-watch-3156771_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blogs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/27/blogs/">写这么多系列博客，怪不得找不到女朋友</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/27/blogs/" class="archive-article-date">
-  	<time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fprrv5n1p2j31hc0u0tm6.jpg" alt="nature-3054445_1920"></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>好几周没更新博客了，对不断支持我博客的童鞋们说声：“抱歉了！”。自己这段时间确实比较忙，而且还在抽空完成学校的毕业设计。今天晚上抽空把大学期间写过的博客弄一个系列文章合集，算是对大学这四年的一个总结，证明自己没白过。</p>
-        
-          <a class="article-more-a" href="/2018/03/27/blogs/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客合集</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/27/blogs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-SpringBoot2-Migration-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/SpringBoot2-Migration-Guide/">Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/06/SpringBoot2-Migration-Guide/" class="archive-article-date">
-  	<time datetime="2018-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fp3h0820m2j31hc0zkwxr.jpg" alt=""></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>希望本文档将帮助您把应用程序迁移到 Spring Boot 2.0。</p>
-        
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -853,8 +625,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

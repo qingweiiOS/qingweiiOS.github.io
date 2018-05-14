@@ -18,15 +18,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zhisheng的博客</title>
+  <title>解决jdk1.8中发送邮件失败（handshake_failure）问题 | zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：  发送邮件失败Mail server connection failed;    nested excep">
+<meta name="keywords" content="Java,邮件发送">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
+<meta property="og:url" content="http://yoursite.com/2017/06/13/解决jdk1.8中发送邮件失败（handshake_failure）问题/index.html">
 <meta property="og:site_name" content="zhisheng的博客">
+<meta property="og:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：  发送邮件失败Mail server connection failed;    nested excep">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812214234823">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812214501830">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812214625234">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812215327071">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812215943627">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812220046041">
+<meta property="og:image" content="http://img.blog.csdn.net/20160812222233971">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg">
+<meta property="og:updated_time" content="2018-03-06T16:05:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhisheng的博客">
+<meta name="twitter:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
+<meta name="twitter:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：  发送邮件失败Mail server connection failed;    nested excep">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160812214234823">
   
     <link rel="alternative" href="/atom.xml" title="zhisheng的博客" type="application/atom+xml">
   
@@ -194,22 +208,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-springboot_SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-解决jdk1.8中发送邮件失败（handshake_failure）问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/springboot_SpringApplication/">Spring Boot 2.0系列文章(七)：SpringApplication 深入探索</a>
+    <h1 class="article-title" itemprop="name">
+      解决jdk1.8中发送邮件失败（handshake_failure）问题
     </h1>
   
 
         
-        <a href="/2018/04/30/springboot_SpringApplication/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2017/06/13/解决jdk1.8中发送邮件失败（handshake_failure）问题/" class="archive-article-date">
+  	<time datetime="2017-06-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
 </a>
         
       </header>
@@ -217,20 +229,106 @@ var _hmt = _hmt || [];
 
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqxbkmfds2j31hc0oegze.jpg" alt="sunset-3325080_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/#more">more >></a>
-        
+        <p>暑假在家做一个类似知乎的问答型网站（代码可见：<a href="https://github.com/1041218129/wenda" target="_blank" rel="noopener">Github/wenda</a>  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个<strong>站内邮件通知系统</strong>（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：</p>
+<blockquote>
+<p>发送邮件失败Mail server connection failed;    nested exception is javax.mail.MessagingException:     Could not connect to SMTP host: smtp.qq.com, port: 465;<br>nested exception is:   javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure. Failed messages: javax.mail.  MessagingException: Could not connect to SMTP   host: smtp.qq.com,  port: 465;<br>nested exception is:  <strong>javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</strong></p>
+</blockquote>
+<a id="more"></a>
+<p>自己在将错误信息代码google了一下，找了很久发现很多解决方案，包括stackoverflow上的一些解决方案，但还是没用。然后呢用百度试了下，结果在第一条是开源中国的一篇博客:<a href="http://www.oschina.net/question/2282830_247657" target="_blank" rel="noopener">javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</a>。<br><img src="http://img.blog.csdn.net/20160812214234823" alt="百度出来的结果"></p>
+<p>点进去是这样的：（如下图）<br><img src="http://img.blog.csdn.net/20160812214501830" alt="开源中国"></p>
+<p><img src="http://img.blog.csdn.net/20160812214625234" alt="正确解决方式"></p>
+<p>结果就是：这个问题是jdk导致的，jdk1.8里面有一个jce的包，安全性机制导致的访问https会报错，官网上有替代的jar包，如果替换掉就可以了。问题的解决方法还可以就是在整个项目中把你的jdk换成是1.7去，同样也可以解决这个我问题。</p>
+<p>这两个jar包的下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html</a></p>
+<p><img src="http://img.blog.csdn.net/20160812215327071" alt="包下载"></p>
+<p>然后下载之后，把这个压缩文件解压，得到两个jar包去覆盖jdk安装目录下的jre\lib\security\下相同的jar包就能解决java8的邮件发送问题。</p>
+<p>接着用QQ邮箱我亲测有用，但是要注意一点就是：开启SMTP服务后要记得将你的16位授权码作为你的qq邮箱登录密码。</p>
+<blockquote>
+<p>MailSender.java中mailSender.setPassword(“16位授权码”);</p>
+<p>mailSender.setHost(“smtp.qq.com”);<br>mailSender.setPort(465);</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160812215943627" alt="开启服务注意的地方"></p>
+<p><img src="http://img.blog.csdn.net/20160812220046041" alt="16位授权码"></p>
+<p>下面把完整代码发布出来：</p>
+<p> <strong>1. LoginExceptionHandler.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nowcoder.async.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.nowcoder.async.EventHandler;</span><br><span class="line"><span class="keyword">import</span> com.nowcoder.async.EventModel;</span><br><span class="line"><span class="keyword">import</span> com.nowcoder.async.EventType;</span><br><span class="line"><span class="keyword">import</span> com.nowcoder.util.MailSender;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by 10412 on 2016/8/10.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginExceptionHandler</span> <span class="keyword">implements</span> <span class="title">EventHandler</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MailSender mailSender;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doHandle</span><span class="params">(EventModel model)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// xxxx判断发现这个用户登陆异常</span></span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">        map.put(<span class="string">"username"</span>, model.getExt(<span class="string">"username"</span>));</span><br><span class="line">        mailSender.sendWithHTMLTemplate(model.getExt(<span class="string">"email"</span>), <span class="string">"登陆IP异常"</span>, <span class="string">"mails/login_exception.html"</span>, map);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;EventType&gt; <span class="title">getSupportEventTypes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(EventType.LOGIN);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <strong>2. LoginController.java</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">package com.nowcoder.controller;</span><br><span class="line"></span><br><span class="line">import com.nowcoder.async.EventModel;</span><br><span class="line">import com.nowcoder.async.EventProducer;</span><br><span class="line">import com.nowcoder.async.EventType;</span><br><span class="line">import com.nowcoder.service.UserService;</span><br><span class="line">import org.apache.commons.lang.StringUtils;</span><br><span class="line">import org.slf4j.Logger;</span><br><span class="line">import org.slf4j.LoggerFactory;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.stereotype.Controller;</span><br><span class="line">import org.springframework.ui.Model;</span><br><span class="line">import org.springframework.web.bind.annotation.CookieValue;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.Cookie;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by 10412 on 2016/7/2.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">public class LoginController &#123;</span><br><span class="line">    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    EventProducer eventProducer;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(path = &#123;&quot;/reg/&quot;&#125;, method = &#123;RequestMethod.POST&#125;)</span><br><span class="line">    public String reg(Model model, @RequestParam(&quot;username&quot;) String username,</span><br><span class="line">                      @RequestParam(&quot;password&quot;) String password,</span><br><span class="line">                      @RequestParam(&quot;next&quot;) String next,</span><br><span class="line">                      @RequestParam(value=&quot;rememberme&quot;, defaultValue = &quot;false&quot;) boolean rememberme,</span><br><span class="line">                      HttpServletResponse response) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Map&lt;String, Object&gt; map = userService.register(username, password);</span><br><span class="line">            if (map.containsKey(&quot;ticket&quot;)) &#123;</span><br><span class="line">                Cookie cookie = new Cookie(&quot;ticket&quot;, map.get(&quot;ticket&quot;).toString());</span><br><span class="line">                cookie.setPath(&quot;/&quot;);</span><br><span class="line">                if (rememberme) &#123;</span><br><span class="line">                    cookie.setMaxAge(3600*24*5);</span><br><span class="line">                &#125;</span><br><span class="line">                response.addCookie(cookie);</span><br><span class="line">                if (StringUtils.isNotBlank(next)) &#123;</span><br><span class="line">                    return &quot;redirect:&quot; + next;</span><br><span class="line">                &#125;</span><br><span class="line">                return &quot;redirect:/&quot;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                model.addAttribute(&quot;msg&quot;, map.get(&quot;msg&quot;));</span><br><span class="line">                return &quot;login&quot;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            logger.error(&quot;注册异常&quot; + e.getMessage());</span><br><span class="line">            model.addAttribute(&quot;msg&quot;, &quot;服务器错误&quot;);</span><br><span class="line">            return &quot;login&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(path = &#123;&quot;/reglogin&quot;&#125;, method = &#123;RequestMethod.GET&#125;)</span><br><span class="line">    public String regloginPage(Model model, @RequestParam(value = &quot;next&quot;, required = false) String next) &#123;</span><br><span class="line">        model.addAttribute(&quot;next&quot;, next);</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(path = &#123;&quot;/login/&quot;&#125;, method = &#123;RequestMethod.POST&#125;)</span><br><span class="line">    public String login(Model model, @RequestParam(&quot;username&quot;) String username,</span><br><span class="line">                        @RequestParam(&quot;password&quot;) String password,</span><br><span class="line">                        @RequestParam(value=&quot;next&quot;, required = false) String next,</span><br><span class="line">                        @RequestParam(value=&quot;rememberme&quot;, defaultValue = &quot;false&quot;) boolean rememberme,</span><br><span class="line">                        HttpServletResponse response) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Map&lt;String, Object&gt; map = userService.login(username, password);</span><br><span class="line">            if (map.containsKey(&quot;ticket&quot;)) &#123;</span><br><span class="line">                Cookie cookie = new Cookie(&quot;ticket&quot;, map.get(&quot;ticket&quot;).toString());</span><br><span class="line">                cookie.setPath(&quot;/&quot;);</span><br><span class="line">                if (rememberme) &#123;</span><br><span class="line">                    cookie.setMaxAge(3600*24*5);</span><br><span class="line">                &#125;</span><br><span class="line">                response.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">                eventProducer.fireEvent(new EventModel(EventType.LOGIN)</span><br><span class="line">                        .setExt(&quot;username&quot;, username).setExt(&quot;email&quot;, &quot;****@qq.com&quot;)</span><br><span class="line">                        .setActorId((int)map.get(&quot;userId&quot;)));</span><br><span class="line"></span><br><span class="line">                if (StringUtils.isNotBlank(next)) &#123;</span><br><span class="line">                    return &quot;redirect:&quot; + next;</span><br><span class="line">                &#125;</span><br><span class="line">                return &quot;redirect:/&quot;;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                model.addAttribute(&quot;msg&quot;, map.get(&quot;msg&quot;));</span><br><span class="line">                return &quot;login&quot;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            logger.error(&quot;登陆异常&quot; + e.getMessage());</span><br><span class="line">            return &quot;login&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(path = &#123;&quot;/logout&quot;&#125;, method = &#123;RequestMethod.GET, RequestMethod.POST&#125;)</span><br><span class="line">    public String logout(@CookieValue(&quot;ticket&quot;) String ticket) &#123;</span><br><span class="line">        userService.logout(ticket);</span><br><span class="line">        return &quot;redirect:/&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>3. EventHandler.java</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.nowcoder.async;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by 10412 on 2016/8/10.</span><br><span class="line"> */</span><br><span class="line">public interface EventHandler</span><br><span class="line">&#123;</span><br><span class="line">    void doHandle(EventModel model);</span><br><span class="line"></span><br><span class="line">    List&lt;EventType&gt; getSupportEventTypes();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>4. MailSender.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nowcoder.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.velocity.app.VelocityEngine;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.InitializingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.mail.javamail.JavaMailSenderImpl;</span><br><span class="line"><span class="keyword">import</span> org.springframework.mail.javamail.MimeMessageHelper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.velocity.VelocityEngineUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.InternetAddress;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.MimeMessage;</span><br><span class="line"><span class="keyword">import</span> javax.mail.internet.MimeUtility;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by 10412 on 2016/8/10. // ***<span class="doctag">@qq</span>.com   wnppafhsbrcgbfbh（16位授权码）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">InitializingBean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MailSender.class);</span><br><span class="line">    <span class="keyword">private</span> JavaMailSenderImpl mailSender;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> VelocityEngine velocityEngine;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">sendWithHTMLTemplate</span><span class="params">(String to, String subject, String template, Map&lt;String, Object&gt; model)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String nick = MimeUtility.encodeText(<span class="string">"***"</span>);</span><br><span class="line">            InternetAddress from = <span class="keyword">new</span> InternetAddress(nick + <span class="string">"&lt;****@qq.com&gt;"</span>);</span><br><span class="line">            MimeMessage mimeMessage = mailSender.createMimeMessage();</span><br><span class="line">            MimeMessageHelper mimeMessageHelper = <span class="keyword">new</span> MimeMessageHelper(mimeMessage);</span><br><span class="line">            String result = VelocityEngineUtils</span><br><span class="line">                    .mergeTemplateIntoString(velocityEngine, template, <span class="string">"UTF-8"</span>, model);</span><br><span class="line">            mimeMessageHelper.setTo(to);</span><br><span class="line">            mimeMessageHelper.setFrom(from);</span><br><span class="line">            mimeMessageHelper.setSubject(subject);</span><br><span class="line">            mimeMessageHelper.setText(result, <span class="keyword">true</span>);</span><br><span class="line">            mailSender.send(mimeMessage);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">"发送邮件失败"</span> + e.getMessage());</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        mailSender = <span class="keyword">new</span> JavaMailSenderImpl();</span><br><span class="line">        mailSender.setUsername(<span class="string">"***@qq.com"</span>);</span><br><span class="line">        mailSender.setPassword(<span class="string">"wnppafhsbrcgbfbh"</span>);   <span class="comment">//qq邮箱开启smtp服务后使用16位授权码在第三方登录</span></span><br><span class="line"><span class="comment">//        mailSender.setHost("smtp.exmail.qq.com");</span></span><br><span class="line">        mailSender.setHost(<span class="string">"smtp.qq.com"</span>);</span><br><span class="line">        mailSender.setPort(<span class="number">465</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        mailSender.setHost("smtp.163.com");      //163邮箱</span></span><br><span class="line"><span class="comment">//        mailSender.setPort(25);</span></span><br><span class="line">        mailSender.setProtocol(<span class="string">"smtps"</span>);</span><br><span class="line">        mailSender.setDefaultEncoding(<span class="string">"utf8"</span>);</span><br><span class="line">        Properties javaMailProperties = <span class="keyword">new</span> Properties();</span><br><span class="line">        javaMailProperties.put(<span class="string">"mail.smtp.ssl.enable"</span>, <span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//javaMailProperties.put("mail.smtp.auth", true);</span></span><br><span class="line">        <span class="comment">//javaMailProperties.put("mail.smtp.starttls.enable", true);</span></span><br><span class="line">        mailSender.setJavaMailProperties(javaMailProperties);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <strong>5. login_exception.html</strong>  发送消息模板（可自定义）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你好$username，你的登陆有问题!</span><br></pre></td></tr></table></figure>
+<p>一切都好了，运行。</p>
+<p>登录。</p>
+<p>发送邮件过来了。</p>
+<p><img src="http://img.blog.csdn.net/20160812222233971" alt="邮件发过来了"></p>
+<p>总结来说：<strong>这个错误就是jdk1.8中的一个jce的包，安全性机制导致访问https会报错。</strong></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg" alt=""></p>
+
       
 
       <!-- <div>
   			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
   		</div> -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -245,7 +343,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">邮件发送</a>
         		</li>
       		
 		</ul>
@@ -254,18 +352,83 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/13/解决jdk1.8中发送邮件失败（handshake_failure）问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/06/13/深入分析 Java Web 中的中文编码问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深入分析 Java Web 中的中文编码问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/13/深度探究Java 中 finally 语句块/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深度探究Java 中 finally 语句块</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -273,557 +436,30 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Distributed_lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/Distributed_lock/">分布式锁看这篇就够了</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2018/04/24/Distributed_lock/" class="archive-article-date">
-  	<time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqp2lqscrwj31hc0zk46a.jpg" alt="meadow-811339_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="解决jdk1.8中发送邮件失败（handshake_failure）问题"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    <article id="post-SpringBootApplication-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/SpringBootApplication-annotation/">Spring Boot 2.0系列文章(六)：Spring Boot 2.0中SpringBootApplication注解详解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/SpringBootApplication-annotation/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqifa86vplj31hc0p0n7e.jpg" alt="nature-3201015_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-spring_boot2_project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/spring_boot2_project/">Spring Boot 2.0系列文章(五)：Spring Boot 2.0 项目源码结构预览</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/spring_boot2_project/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqhraflay7j31hc0zk0z1.jpg" alt="fireworks-2585843_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-springboot2_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/springboot2_code/">Spring Boot 2.0系列文章(四)：Spring Boot 2.0 源码阅读环境搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/springboot2_code/" class="archive-article-date">
-  	<time datetime="2018-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqdma0kpk1j31hc0zkqox.jpg" alt="night-photograph-2183637_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring_Boot_2.0_Configuration_Changelog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">Spring Boot 2.0系列文章(三)：Spring Boot 2.0 配置改变</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/" class="archive-article-date">
-  	<time datetime="2018-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqc4n57tj4j31hc0zktmm.jpg" alt="pocket-watch-3156771_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blogs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/27/blogs/">写这么多系列博客，怪不得找不到女朋友</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/27/blogs/" class="archive-article-date">
-  	<time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fprrv5n1p2j31hc0u0tm6.jpg" alt="nature-3054445_1920"></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>好几周没更新博客了，对不断支持我博客的童鞋们说声：“抱歉了！”。自己这段时间确实比较忙，而且还在抽空完成学校的毕业设计。今天晚上抽空把大学期间写过的博客弄一个系列文章合集，算是对大学这四年的一个总结，证明自己没白过。</p>
-        
-          <a class="article-more-a" href="/2018/03/27/blogs/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客合集</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/27/blogs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-SpringBoot2-Migration-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/SpringBoot2-Migration-Guide/">Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/06/SpringBoot2-Migration-Guide/" class="archive-article-date">
-  	<time datetime="2018-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fp3h0820m2j31hc0zkwxr.jpg" alt=""></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>希望本文档将帮助您把应用程序迁移到 Spring Boot 2.0。</p>
-        
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -853,8 +489,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

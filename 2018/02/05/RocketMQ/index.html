@@ -18,15 +18,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zhisheng的博客</title>
+  <title>RocketMQ系列文章（一）：RocketMQ 初探 | zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="介绍RocketMQ 是阿里开源的消息中间件，前不久捐献给了 Apache 。正如官网介绍如下：它是一个开源的分布式消息传递和流式数据平台。">
+<meta name="keywords" content="RocketMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMQ系列文章（一）：RocketMQ 初探">
+<meta property="og:url" content="http://yoursite.com/2018/02/05/RocketMQ/index.html">
 <meta property="og:site_name" content="zhisheng的博客">
+<meta property="og:description" content="介绍RocketMQ 是阿里开源的消息中间件，前不久捐献给了 Apache 。正如官网介绍如下：它是一个开源的分布式消息传递和流式数据平台。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbrj17mj31hc0zj7hb.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbtu01lj31kw0jbjzw.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fo4vbvbgisj31kw0yw7c9.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbs0dn7j30r30c23zl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fo4vbpoxtej30r30dsdgs.jpg">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/blog/180103/C6LG3mGa12.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg">
+<meta property="og:updated_time" content="2018-03-24T02:35:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhisheng的博客">
+<meta name="twitter:title" content="RocketMQ系列文章（一）：RocketMQ 初探">
+<meta name="twitter:description" content="介绍RocketMQ 是阿里开源的消息中间件，前不久捐献给了 Apache 。正如官网介绍如下：它是一个开源的分布式消息传递和流式数据平台。">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbrj17mj31hc0zj7hb.jpg">
   
     <link rel="alternative" href="/atom.xml" title="zhisheng的博客" type="application/atom+xml">
   
@@ -194,22 +207,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-springboot_SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-RocketMQ" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/springboot_SpringApplication/">Spring Boot 2.0系列文章(七)：SpringApplication 深入探索</a>
+    <h1 class="article-title" itemprop="name">
+      RocketMQ系列文章（一）：RocketMQ 初探
     </h1>
   
 
         
-        <a href="/2018/04/30/springboot_SpringApplication/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2018/02/05/RocketMQ/" class="archive-article-date">
+  	<time datetime="2018-02-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
 </a>
         
       </header>
@@ -217,20 +228,144 @@ var _hmt = _hmt || [];
 
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#产品发展历史"><span class="toc-number">2.</span> <span class="toc-text">产品发展历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念专业术语"><span class="toc-number">3.</span> <span class="toc-text">概念专业术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构"><span class="toc-number">4.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Producer"><span class="toc-number">5.</span> <span class="toc-text">Producer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NameServer"><span class="toc-number">5.1.</span> <span class="toc-text">NameServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Broker"><span class="toc-number">5.2.</span> <span class="toc-text">Broker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Consumer"><span class="toc-number">5.3.</span> <span class="toc-text">Consumer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关注我"><span class="toc-number">6.</span> <span class="toc-text">关注我</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqxbkmfds2j31hc0oegze.jpg" alt="sunset-3325080_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/#more">more >></a>
-        
+        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbrj17mj31hc0zj7hb.jpg" alt="gooafoss-1840758_1920"></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>RocketMQ 是阿里开源的消息中间件，前不久捐献给了 Apache 。正如<a href="http://rocketmq.apache.org/" target="_blank" rel="noopener">官网</a>介绍如下：它是一个开源的分布式消息传递和流式数据平台。</p>
+<a id="more"></a>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbtu01lj31kw0jbjzw.jpg" alt="rocketmq01"></p>
+<p>特点如下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo4vbvbgisj31kw0yw7c9.jpg" alt="rocketmq02"></p>
+<h3 id="产品发展历史"><a href="#产品发展历史" class="headerlink" title="产品发展历史"></a>产品发展历史</h3><p>大约经历了三个主要版本迭代</p>
+<p><strong>一、Metaq（Metamorphosis）1.x</strong></p>
+<p>由开源社区killme2008维护，开源社区非常活跃。</p>
+<p><strong>二、Metaq 2.x</strong></p>
+<p>于2012年10月份上线，在淘宝内部被广泛使用。</p>
+<p><strong>三、RocketMQ 3.x</strong></p>
+<p>基于公司内部开源共建原则，RocketMQ 项目只维护核心功能，且去除了所有其他运行时依赖，核心功能最简化。每个 BU 的个性化需求都在 RocketMQ 项目之上进行深度定制。RocketMQ 向其他 BU 提供的仅仅是 Jar 包，例如要定制一个 Broker，那么只需要依赖 rocketmq-broker 这个 jar 包即可，可通过 API 进行交互，如果定制 client，则依赖 rocketmq-client 这个 jar 包，对其提供的 api 进行再封装。</p>
+<p>在 RocketMQ 项目基础上衍生的项目如下</p>
+<ul>
+<li><p>com.taobao.metaq v3.0 = RocketMQ + 淘宝个性化需求</p>
+<p>为<strong>淘宝</strong>应用提供消息服务</p>
+</li>
+<li><p>com.alipay.zpullmsg v1.0 =RocketMQ + 支付宝个性化需求</p>
+<p>为<strong>支付宝</strong>应用提供消息服务</p>
+</li>
+<li><p>com.alibaba.commonmq v1.0 = Notify + RocketMQ + B2B个性化需求</p>
+<p>为 <strong>B2B</strong> 应用提供消息服务</p>
+</li>
+</ul>
+<p><strong>四、RocketMQ 3.x</strong></p>
+<p>目前它的最新版本是 4.2 版本。</p>
+<h3 id="概念专业术语"><a href="#概念专业术语" class="headerlink" title="概念专业术语"></a>概念专业术语</h3><p><strong>Producer</strong></p>
+<p>消息生产者，负责产生消息，一般由业务系统负责产生消息。</p>
+<p><strong>Consumer</strong></p>
+<p>消息消费者，负责消费消息，一般是后台系统负责异步消费。</p>
+<p><strong>Push Consumer</strong></p>
+<p>Consumer 的一种，应用通常向 Consumer 对象注册一个 Listener 接口，一旦收到消息，Consumer 对象立刻回调 Listener 接口方法。</p>
+<p><strong>Pull Consumer</strong></p>
+<p>Consumer 的一种，应用通常主动调用 Consumer 的拉消息方法从 Broker 拉消息，主动权由应用控制。</p>
+<p><strong>Producer Group</strong></p>
+<p>一类 Producer 的集合名称，这类 Producer 通常发送一类消息，且发送逻辑一致。</p>
+<p><strong>Consumer Group</strong></p>
+<p>一类 Consumer 的集合名称，这类 Consumer 通常消费一类消息，且消费逻辑一致。</p>
+<p><strong>Broker</strong></p>
+<p>消息中转角色，负责存储消息，转发消息，一般也称为 Server。在 JMS 规范中称为 Provider。</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fo4vbs0dn7j30r30c23zl.jpg" alt="rmq-basic-arc"></p>
+<p>从这架构图中可以看到它主要由四部分组成：Producer（生产者）、NameServer、Broker、Consumer（消费者）。</p>
+<h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>生产者支持分布式部署。分布式生产者通过多种负载均衡模式向 Broker 集群发送消息。发送过程支持快速失败并具有低延迟。</p>
+<h4 id="NameServer"><a href="#NameServer" class="headerlink" title="NameServer"></a>NameServer</h4><p>它提供轻量级服务发现和路由，每个 Name Server 记录完整的路由信息，提供相应的读写服务，支持快速存储扩展。主要包括两个功能：</p>
+<ul>
+<li>代理管理，  <strong>NameServer</strong> 接受来自 Broker 集群的注册，并提供检测代理是否存在的心跳机制。</li>
+<li>路由管理，每个 NameServer 将保存有关代理群集的全部路由信息以及客户端查询的<strong>队列</strong>信息。</li>
+</ul>
+<p>我们知道，RocketMQ客户端（生产者/消费者）将从NameServer查询队列路由信息，但客户端如何找到NameServer地址？</p>
+<p>将NameServer地址列表提供给客户端有四种方法：</p>
+<ul>
+<li>编程方式，就像<code>producer.setNamesrvAddr(&quot;ip:port&quot;)</code>。</li>
+<li>Java选项，使用<code>rocketmq.namesrv.addr</code>。</li>
+<li>环境变量，使用<code>NAMESRV_ADDR</code>。</li>
+<li>HTTP 端点。</li>
+</ul>
+<h4 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h4><p>Broker 通过提供轻量级的 Topic 和 Queue 机制来照顾消息存储。它们支持 Push 和 Pull 模式，包含容错机制（2个拷贝或者3个拷贝），并且提供了强大的峰值填充和以原始时间顺序累计数千亿条消息的能力。此外，broker 还提供灾难恢复，丰富的指标统计数据和警报机制，而传统的消息传递系统都缺乏这些机制。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fo4vbpoxtej30r30dsdgs.jpg" alt="rmq-basic-component"></p>
+<p>如上图：Broker 服务器重要的子模块：</p>
+<ul>
+<li>远程处理模块是 broker 的入口，处理来自客户的请求。</li>
+<li>Client manager，管理客户（生产者/消费者）并维护消费者的主题订阅。</li>
+<li>Store Service，提供简单的 API 来存储或查询物理磁盘中的消息。</li>
+<li>HA 服务，提供主代理和从代理之间的数据同步功能。</li>
+<li>索引服务，通过指定键为消息建立索引，并提供快速的消息查询。</li>
+</ul>
+<h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><p>消费者也支持 Push 和 Pull 模型中的分布式部署。它还支持群集消费和消息广播。它提供了实时的消息订阅机制，可以满足大多数消费者的需求。</p>
+<h3 id="关注我"><a href="#关注我" class="headerlink" title="关注我"></a>关注我</h3><p><img src="http://ohfk1r827.bkt.clouddn.com/blog/180103/C6LG3mGa12.jpg" alt="mark"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文是对 RocketMQ 的简单点了解，参考了官网介绍。</p>
+<p>转载请注明地址：<a href="http://www.54tianzhisheng.cn/2018/02/05/RocketMQ/" target="_blank" rel="noopener">http://www.54tianzhisheng.cn/2018/02/05/RocketMQ/</a></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg" alt=""></p>
+
       
 
       <!-- <div>
   			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
   		</div> -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -241,11 +376,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RocketMQ</a>
         		</li>
       		
 		</ul>
@@ -254,18 +385,83 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/02/05/RocketMQ/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2018/02/06/RocketMQ-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          RocketMQ系列文章（二）：RocketMQ 安装及快速入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/28/RabbitMQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Boot系列文章（五）：SpringBoot RabbitMQ 整合进阶版</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -273,557 +469,30 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Distributed_lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/Distributed_lock/">分布式锁看这篇就够了</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2018/04/24/Distributed_lock/" class="archive-article-date">
-  	<time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqp2lqscrwj31hc0zk46a.jpg" alt="meadow-811339_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="RocketMQ系列文章（一）：RocketMQ 初探"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    <article id="post-SpringBootApplication-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/SpringBootApplication-annotation/">Spring Boot 2.0系列文章(六)：Spring Boot 2.0中SpringBootApplication注解详解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/SpringBootApplication-annotation/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqifa86vplj31hc0p0n7e.jpg" alt="nature-3201015_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-spring_boot2_project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/spring_boot2_project/">Spring Boot 2.0系列文章(五)：Spring Boot 2.0 项目源码结构预览</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/spring_boot2_project/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqhraflay7j31hc0zk0z1.jpg" alt="fireworks-2585843_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-springboot2_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/springboot2_code/">Spring Boot 2.0系列文章(四)：Spring Boot 2.0 源码阅读环境搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/springboot2_code/" class="archive-article-date">
-  	<time datetime="2018-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqdma0kpk1j31hc0zkqox.jpg" alt="night-photograph-2183637_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring_Boot_2.0_Configuration_Changelog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">Spring Boot 2.0系列文章(三)：Spring Boot 2.0 配置改变</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/" class="archive-article-date">
-  	<time datetime="2018-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqc4n57tj4j31hc0zktmm.jpg" alt="pocket-watch-3156771_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blogs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/27/blogs/">写这么多系列博客，怪不得找不到女朋友</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/27/blogs/" class="archive-article-date">
-  	<time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fprrv5n1p2j31hc0u0tm6.jpg" alt="nature-3054445_1920"></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>好几周没更新博客了，对不断支持我博客的童鞋们说声：“抱歉了！”。自己这段时间确实比较忙，而且还在抽空完成学校的毕业设计。今天晚上抽空把大学期间写过的博客弄一个系列文章合集，算是对大学这四年的一个总结，证明自己没白过。</p>
-        
-          <a class="article-more-a" href="/2018/03/27/blogs/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客合集</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/27/blogs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-SpringBoot2-Migration-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/SpringBoot2-Migration-Guide/">Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/06/SpringBoot2-Migration-Guide/" class="archive-article-date">
-  	<time datetime="2018-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fp3h0820m2j31hc0zkwxr.jpg" alt=""></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>希望本文档将帮助您把应用程序迁移到 Spring Boot 2.0。</p>
-        
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -853,8 +522,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

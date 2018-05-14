@@ -18,15 +18,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zhisheng的博客</title>
+  <title>小白谈数据脱敏 | zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="什么是数据脱敏？百度百科是这样描述的：">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小白谈数据脱敏">
+<meta property="og:url" content="http://yoursite.com/2017/10/28/Data-Desensitization/index.html">
 <meta property="og:site_name" content="zhisheng的博客">
+<meta property="og:description" content="什么是数据脱敏？百度百科是这样描述的：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/cb9.jpg-1">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/ticket1.jpg-1">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/ticket2.jpg-1">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg">
+<meta property="og:updated_time" content="2018-03-06T16:09:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhisheng的博客">
+<meta name="twitter:title" content="小白谈数据脱敏">
+<meta name="twitter:description" content="什么是数据脱敏？百度百科是这样描述的：">
+<meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/cb9.jpg-1">
   
     <link rel="alternative" href="/atom.xml" title="zhisheng的博客" type="application/atom+xml">
   
@@ -194,22 +204,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-springboot_SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Data-Desensitization" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/springboot_SpringApplication/">Spring Boot 2.0系列文章(七)：SpringApplication 深入探索</a>
+    <h1 class="article-title" itemprop="name">
+      小白谈数据脱敏
     </h1>
   
 
         
-        <a href="/2018/04/30/springboot_SpringApplication/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2017/10/28/Data-Desensitization/" class="archive-article-date">
+  	<time datetime="2017-10-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
 </a>
         
       </header>
@@ -217,20 +225,110 @@ var _hmt = _hmt || [];
 
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是数据脱敏？"><span class="toc-number">1.</span> <span class="toc-text">什么是数据脱敏？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生活中的常见例子"><span class="toc-number">2.</span> <span class="toc-text">生活中的常见例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#敏感数据梳理"><span class="toc-number">3.</span> <span class="toc-text">敏感数据梳理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#确定脱敏规则"><span class="toc-number">4.</span> <span class="toc-text">确定脱敏规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脱敏工具代码"><span class="toc-number">5.</span> <span class="toc-text">脱敏工具代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqxbkmfds2j31hc0oegze.jpg" alt="sunset-3325080_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/#more">more >></a>
-        
+        <p><img src="http://ohfk1r827.bkt.clouddn.com/cb9.jpg-1" alt=""></p>
+<h3 id="什么是数据脱敏？"><a href="#什么是数据脱敏？" class="headerlink" title="什么是数据脱敏？"></a>什么是数据脱敏？</h3><p>百度百科是这样描述的：<br><a id="more"></a></p>
+<blockquote>
+<p>数据脱敏是指对某些敏感信息通过脱敏规则进行数据的变形，实现敏感隐私数据的可靠保护。在涉及客户安全数据或者一些商业性敏感数据的情况下，在不违反系统规则条件下，对真实数据进行改造并提供测试使用，如身份证号、手机号、卡号、客户姓名、客户地址、等个人敏感信息都需要通过脱敏规则进行数据的变形，实现敏感隐私数据的可靠保护。这样就可以在开发、测试和其他非生产环境以及外包环境中可以安全的使用脱敏后的真实数据集。</p>
+</blockquote>
+<h3 id="生活中的常见例子"><a href="#生活中的常见例子" class="headerlink" title="生活中的常见例子"></a>生活中的常见例子</h3><p>1、火车票：</p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/ticket1.jpg-1" alt=""></p>
+<p>2、淘宝网页上的收获地址信息：</p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/ticket2.jpg-1" alt=""></p>
+<h3 id="敏感数据梳理"><a href="#敏感数据梳理" class="headerlink" title="敏感数据梳理"></a>敏感数据梳理</h3><p>在进行数据脱敏之前我们应该要确定公司的哪些数据（哪些表、哪些字段）要作为脱敏的目标，下面从用户、公司、卖家方面分析：</p>
+<p>1、用户：名字、手机号码、身份证号码、固定电话、收货地址、电子邮箱、银行卡号、密码等</p>
+<p>2、卖家：名字、手机号码、身份证号码、固定电话等</p>
+<p>3、公司：交易金额、优惠券码、充值码等</p>
+<h3 id="确定脱敏规则"><a href="#确定脱敏规则" class="headerlink" title="确定脱敏规则"></a>确定脱敏规则</h3><p>确定好了公司的哪些数据要作为脱敏目标后，我们就需要制定脱敏的规则（具体的实施方法）。</p>
+<p>常见方法：</p>
+<p>1、替换：如统一将女性用户名替换为F，这种方法更像“障眼法”，对内部人员可以完全保持信息完整性，但易破解。</p>
+<p>2、重排：序号12345 重排为 54321，按照一定的顺序进行打乱，很像“替换”， 可以在需要时方便还原信息，但同样易破解。</p>
+<p>3、加密：编号 12345 加密为 23456，安全程度取决于采用哪种加密算法，一般根据实际情况而定。</p>
+<p>4、截断：13811001111 截断为 138，舍弃必要信息来保证数据的模糊性，是比较常用的脱敏方法，但往往对生产不够友好。（丢失字段的长度）</p>
+<p>5、掩码: 123456 -&gt; 1xxxx6，保留了部分信息，并且保证了信息的长度不变性，对信息持有者更易辨别， 如火车票上得身份信息。（常用方法）</p>
+<p>6、日期偏移取整：20130520 12:30:45 -&gt; 20130520 12:00:00，舍弃精度来保证原始数据的安全性，一般此种方法可以保护数据的时间分布密度。</p>
+<p>目前我的脱敏规则想法是：</p>
+<p>1、【中文姓名】只显示第一个汉字，其他隐藏为2个星号，比如：<code>李**</code></p>
+<p>2、【身份证号】显示最后四位，其他隐藏。共计18位或者15位，比如：<code>*************1234</code></p>
+<p>3、【固定电话】 显示后四位，其他隐藏，比如：<code>*******3241</code></p>
+<p>4、【手机号码】前三位，后四位，其他隐藏，比如：<code>135****6810</code></p>
+<p>5、【地址】只显示到地区，不显示详细地址，比如：<code>上海徐汇区漕河泾开发区***</code></p>
+<p>6、【电子邮箱】 邮箱前缀仅显示第一个字母，前缀其他隐藏，用星号代替，@及后面的地址显示，比如：<code>d**@126.com</code></p>
+<p>7、【银行卡号】前六位，后四位，其他用星号隐藏每位1个星号，比如：<code>6222600**********1234</code></p>
+<p>8、【密码】密码的全部字符都用<em>代替，比如：<strong><strong><em>*</em></strong></strong></em></p>
+<p>根据以上规则进行数据脱敏！</p>
+<p>具体思路目前是这样的：</p>
+<p>从原数据源查询到的生产数据 ——&gt; 数据脱敏 ——&gt; 更新到目标数据源。</p>
+<p>原数据源、目标数据源、需要脱敏的表、字段等都放在配置文件中，做到可扩展性！</p>
+<h3 id="脱敏工具代码"><a href="#脱敏工具代码" class="headerlink" title="脱敏工具代码"></a>脱敏工具代码</h3><p>根据以上规则已经写好了一份简单的脱敏规则工具类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据脱敏工具类</span></span><br><span class="line"><span class="comment"> * Created by zhisheng_tian on 2017/10/25.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DesensitizedUtils</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【中文姓名】只显示第一个汉字，其他隐藏为2个星号，比如：李**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fullName</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">chineseName</span><span class="params">(String fullName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(fullName)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String name = StringUtils.left(fullName, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> StringUtils.rightPad(name, StringUtils.length(fullName), <span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【身份证号】显示最后四位，其他隐藏。共计18位或者15位，比如：*************1234</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">idCardNum</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(id)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String num = StringUtils.right(id, <span class="number">4</span>);</span><br><span class="line">        <span class="keyword">return</span> StringUtils.leftPad(num, StringUtils.length(id), <span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【固定电话】 显示后四位，其他隐藏，比如：*******3241</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> num</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">fixedPhone</span><span class="params">(String num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(num)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.leftPad(StringUtils.right(num, <span class="number">4</span>), StringUtils.length(num), <span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【手机号码】前三位，后四位，其他隐藏，比如：135****6810</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> num</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">mobilePhone</span><span class="params">(String num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(num)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.left(num, <span class="number">3</span>).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(num, <span class="number">4</span>), StringUtils.length(num), <span class="string">"*"</span>), <span class="string">"***"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【地址】只显示到地区，不显示详细地址，比如：上海徐汇区漕河泾开发区***</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> address</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> sensitiveSize 敏感信息长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">address</span><span class="params">(String address, <span class="keyword">int</span> sensitiveSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(address)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> length = StringUtils.length(address);</span><br><span class="line">        <span class="keyword">return</span> StringUtils.rightPad(StringUtils.left(address, length - sensitiveSize), length, <span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【电子邮箱】 邮箱前缀仅显示第一个字母，前缀其他隐藏，用星号代替，@及后面的地址显示，比如：d**@126.com</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> email</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">email</span><span class="params">(String email)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(email)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> index = StringUtils.indexOf(email, <span class="string">"@"</span>);</span><br><span class="line">        <span class="keyword">if</span> (index &lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> email;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> StringUtils.rightPad(StringUtils.left(email, <span class="number">1</span>), index, <span class="string">"*"</span>).concat(StringUtils.mid(email, index, StringUtils.length(email)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【银行卡号】前六位，后四位，其他用星号隐藏每位1个星号，比如：6222600**********1234</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cardNum</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">bankCard</span><span class="params">(String cardNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(cardNum)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.left(cardNum, <span class="number">6</span>).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(cardNum, <span class="number">4</span>), StringUtils.length(cardNum), <span class="string">"*"</span>), <span class="string">"******"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 【密码】密码的全部字符都用*代替，比如：******</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> password</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">password</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isBlank(password)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String pwd = StringUtils.left(password, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> StringUtils.rightPad(pwd, StringUtils.length(password), <span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>转载请注明地址：<a href="http://www.54tianzhisheng.cn/2017/10/28/Data-Desensitization/" target="_blank" rel="noopener">http://www.54tianzhisheng.cn/2017/10/28/Data-Desensitization/</a></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg" alt=""></p>
+
       
 
       <!-- <div>
   			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
   		</div> -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -240,98 +338,9 @@ var _hmt = _hmt || [];
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Distributed_lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/Distributed_lock/">分布式锁看这篇就够了</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/24/Distributed_lock/" class="archive-article-date">
-  	<time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqp2lqscrwj31hc0zk46a.jpg" alt="meadow-811339_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -339,18 +348,83 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/28/Data-Desensitization/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/11/11/recommended-books/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          送你一份双十一剁手书单【墙裂推荐】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/21/HBase-metrics/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HBase 集群监控</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -358,472 +432,30 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-SpringBootApplication-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/SpringBootApplication-annotation/">Spring Boot 2.0系列文章(六)：Spring Boot 2.0中SpringBootApplication注解详解</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2018/04/19/SpringBootApplication-annotation/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqifa86vplj31hc0p0n7e.jpg" alt="nature-3201015_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="小白谈数据脱敏"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    <article id="post-spring_boot2_project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/spring_boot2_project/">Spring Boot 2.0系列文章(五)：Spring Boot 2.0 项目源码结构预览</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/spring_boot2_project/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqhraflay7j31hc0zk0z1.jpg" alt="fireworks-2585843_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-springboot2_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/springboot2_code/">Spring Boot 2.0系列文章(四)：Spring Boot 2.0 源码阅读环境搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/springboot2_code/" class="archive-article-date">
-  	<time datetime="2018-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqdma0kpk1j31hc0zkqox.jpg" alt="night-photograph-2183637_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring_Boot_2.0_Configuration_Changelog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">Spring Boot 2.0系列文章(三)：Spring Boot 2.0 配置改变</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/" class="archive-article-date">
-  	<time datetime="2018-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqc4n57tj4j31hc0zktmm.jpg" alt="pocket-watch-3156771_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blogs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/27/blogs/">写这么多系列博客，怪不得找不到女朋友</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/27/blogs/" class="archive-article-date">
-  	<time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fprrv5n1p2j31hc0u0tm6.jpg" alt="nature-3054445_1920"></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>好几周没更新博客了，对不断支持我博客的童鞋们说声：“抱歉了！”。自己这段时间确实比较忙，而且还在抽空完成学校的毕业设计。今天晚上抽空把大学期间写过的博客弄一个系列文章合集，算是对大学这四年的一个总结，证明自己没白过。</p>
-        
-          <a class="article-more-a" href="/2018/03/27/blogs/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客合集</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/27/blogs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-SpringBoot2-Migration-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/SpringBoot2-Migration-Guide/">Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/06/SpringBoot2-Migration-Guide/" class="archive-article-date">
-  	<time datetime="2018-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fp3h0820m2j31hc0zkwxr.jpg" alt=""></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>希望本文档将帮助您把应用程序迁移到 Spring Boot 2.0。</p>
-        
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -853,8 +485,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

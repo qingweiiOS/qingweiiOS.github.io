@@ -18,15 +18,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>zhisheng的博客</title>
+  <title>Docker系列文章（一）：基于 Harbor 搭建 Docker 私有镜像仓库 | zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="什么是 Harbor？第一次使用这个的时候是刚进公司处理的第一个任务的时候，发现 Harbor 就是一个用于存储和分发 Docker 镜像的企业级Registry 服务器。">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker系列文章（一）：基于 Harbor 搭建 Docker 私有镜像仓库">
+<meta property="og:url" content="http://yoursite.com/2017/11/26/Docker-harbor/index.html">
 <meta property="og:site_name" content="zhisheng的博客">
+<meta property="og:description" content="什么是 Harbor？第一次使用这个的时候是刚进公司处理的第一个任务的时候，发现 Harbor 就是一个用于存储和分发 Docker 镜像的企业级Registry 服务器。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/blog/171126/j9de1Jf6m0.png-1">
+<meta property="og:image" content="http://img.blog.csdn.net/20170912121921883?/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDI3ODkyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/blog/171126/JgL96AjdEc.jpg-1">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/blog/171126/b98k9d2jcE.png-1">
+<meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/blog/171126/0d82GLa1Cb.png-1">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg">
+<meta property="og:updated_time" content="2018-03-24T02:30:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhisheng的博客">
+<meta name="twitter:title" content="Docker系列文章（一）：基于 Harbor 搭建 Docker 私有镜像仓库">
+<meta name="twitter:description" content="什么是 Harbor？第一次使用这个的时候是刚进公司处理的第一个任务的时候，发现 Harbor 就是一个用于存储和分发 Docker 镜像的企业级Registry 服务器。">
+<meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/blog/171126/j9de1Jf6m0.png-1">
   
     <link rel="alternative" href="/atom.xml" title="zhisheng的博客" type="application/atom+xml">
   
@@ -194,22 +206,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-springboot_SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Docker-harbor" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/30/springboot_SpringApplication/">Spring Boot 2.0系列文章(七)：SpringApplication 深入探索</a>
+    <h1 class="article-title" itemprop="name">
+      Docker系列文章（一）：基于 Harbor 搭建 Docker 私有镜像仓库
     </h1>
   
 
         
-        <a href="/2018/04/30/springboot_SpringApplication/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2017/11/26/Docker-harbor/" class="archive-article-date">
+  	<time datetime="2017-11-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
 </a>
         
       </header>
@@ -217,20 +227,136 @@ var _hmt = _hmt || [];
 
     <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是-Harbor？"><span class="toc-number">1.</span> <span class="toc-text">什么是 Harbor？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Docker"><span class="toc-number">3.</span> <span class="toc-text">安装 Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Docker-compose"><span class="toc-number">4.</span> <span class="toc-text">安装 Docker-compose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-pip"><span class="toc-number">4.1.</span> <span class="toc-text">安装 pip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-docker-compose"><span class="toc-number">4.2.</span> <span class="toc-text">安装 docker compose</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Harbor"><span class="toc-number">5.</span> <span class="toc-text">安装 Harbor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
 <!-- 目录内容结束 -->
 
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqxbkmfds2j31hc0oegze.jpg" alt="sunset-3325080_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/#more">more >></a>
-        
+        <p><img src="http://ohfk1r827.bkt.clouddn.com/blog/171126/j9de1Jf6m0.png-1" alt="mark"></p>
+<h3 id="什么是-Harbor？"><a href="#什么是-Harbor？" class="headerlink" title="什么是 Harbor？"></a>什么是 Harbor？</h3><p>第一次使用这个的时候是刚进公司处理的第一个任务的时候，发现 Harbor 就是一个用于存储和分发 Docker 镜像的企业级Registry 服务器。<br><a id="more"></a><br>网上找到一个 Harbor 的架构图：</p>
+<p><img src="http://img.blog.csdn.net/20170912121921883?/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDI3ODkyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>Harbor 是 VMware 公司开源的企业级 DockerRegistry 项目，项目地址为 <a href="https://github.com/vmware/harbor。其目标是帮助用户迅速搭建一个企业级的" target="_blank" rel="noopener">https://github.com/vmware/harbor。其目标是帮助用户迅速搭建一个企业级的</a> Docker registry 服务。它以 Docker 公司开源的 registry 为基础，提供了管理UI，基于角色的访问控制(Role Based Access Control)，AD/LDAP集成、以及审计日志(Auditlogging) 等企业用户需求的功能，同时还原生支持中文。Harbor 的每个组件都是以 Docker 容器的形式构建的，使用 Docker Compose 来对它进行部署。</p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>1、自己在腾讯云买的服务器（CentOS7.3）</p>
+<p>2、Docker 版本：17.05.0-ce</p>
+<p>3、Docker-compose：1.17.1</p>
+<p>4、Harbor：1.1.2</p>
+<h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>因为系统是 CentOS 7.3 ，内核啥的都已经是 3.10，所以不用担心内核升级的问题，一些操作啥的在 7.x 上操作也很方便。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">yum  update                             //系统版本更新</span><br><span class="line"></span><br><span class="line">vim /etc/yum.repos.d/docker.repo        //添加以下内容</span><br><span class="line"></span><br><span class="line">[dockerrepo]</span><br><span class="line">name=Docker Repository</span><br><span class="line">baseurl=https://yum.dockerproject.org/repo/main/centos/7/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://yum.dockerproject.org/gpg</span><br><span class="line"></span><br><span class="line">//下面安装 Docker 引擎</span><br><span class="line">yum install docker-engine  -y</span><br><span class="line"></span><br><span class="line">//安装docker引擎，此步也可作为更新docker版本的操作：先#systemctl stop docker 停止docker服务，再#yum install docker-engine 更新docker版本</span><br><span class="line"></span><br><span class="line">systemctl  enable  docker.service</span><br><span class="line"></span><br><span class="line">systemctl  start   docker              //启动docker守护进程</span><br><span class="line"></span><br><span class="line">docker info                            //查看docker运行情况</span><br><span class="line"></span><br><span class="line">docker -v							//查看版本信息</span><br></pre></td></tr></table></figure>
+<p>修改 Docker 配置文件 /etc/default/docker 如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOCKER_OPTS="--registry-mirror=http://aad0405c.m.daocloud.io"	//换成国内的镜像加速源，不然拉取镜像简直龟速，不想在吐槽了</span><br></pre></td></tr></table></figure>
+<p>使用 <code>service docker restart</code> 重启 Docker 服务即可。</p>
+<p>或者用官方提供的方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://ef017c13.m.daocloud.io</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Docker-compose"><a href="#安装-Docker-compose" class="headerlink" title="安装 Docker-compose"></a>安装 Docker-compose</h3><p>如果是想直接命令安装也行，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">下载指定版本的docker-compose</span><br><span class="line"></span><br><span class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">对二进制文件赋可执行权限</span><br><span class="line"></span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">测试下docker-compose是否安装成功</span><br><span class="line"></span><br><span class="line">docker-compose --version</span><br><span class="line"></span><br><span class="line">出现如下</span><br><span class="line">docker-compose version 1.17.1, build 6d101fb</span><br></pre></td></tr></table></figure>
+<p>但是，这种方法简直龟速，幸好还有种方法，</p>
+<p>见这里：<a href="https://docs.docker.com/compose/install/#install-compose" target="_blank" rel="noopener">https://docs.docker.com/compose/install/#install-compose</a></p>
+<p>这种需要通过 Python 的 pip 安装</p>
+<h4 id="安装-pip"><a href="#安装-pip" class="headerlink" title="安装 pip"></a>安装 pip</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://pypi.python.org/packages/source/s/setuptools/setuptools-1.4.2.tar.gz</span><br><span class="line"></span><br><span class="line">tar -vxf setuptools-1.4.2.tar.gz</span><br><span class="line"></span><br><span class="line">cd setuptools-1.4.2</span><br><span class="line"></span><br><span class="line">python2.7 setup.py install		//因为服务器自带 Python 2.7</span><br><span class="line"></span><br><span class="line">easy_install-2.7 pip</span><br></pre></td></tr></table></figure>
+<h4 id="安装-docker-compose"><a href="#安装-docker-compose" class="headerlink" title="安装 docker compose"></a>安装 docker compose</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install docker-compose</span><br><span class="line"></span><br><span class="line">docker-compose --version	//测试安装是否成功</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Harbor"><a href="#安装-Harbor" class="headerlink" title="安装 Harbor"></a>安装 Harbor</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/vmware/harbor/releases/download/v1.1.2/harbor-offline-installer-v1.1.2.tgz</span><br><span class="line"></span><br><span class="line">离线安装包,也是龟速，把这个下载链接用迅雷下载，速度却贼快，嘿嘿，然后再传到服务器上去，整个过程快很多！</span><br><span class="line"></span><br><span class="line">tar -zxvf harbor-offline-installer-v1.1.2.tgz</span><br></pre></td></tr></table></figure>
+<p>解压缩之后，进入目录下会看到 harbor.cfg 文件，该文件就是 Harbor 的配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">## Configuration file of Harbor</span><br><span class="line"></span><br><span class="line"># hostname设置访问地址，可以使用ip、域名，不可以设置为127.0.0.1或localhost</span><br><span class="line">hostname = 115.159.227.249   #这里我先配置我的服务器IP地址</span><br><span class="line"></span><br><span class="line"># 访问协议，默认是http，也可以设置https，如果设置https，则nginx ssl需要设置on</span><br><span class="line">ui_url_protocol = http</span><br><span class="line"></span><br><span class="line"># mysql数据库root用户默认密码root123，实际使用时修改下</span><br><span class="line">db_password = root123</span><br><span class="line"></span><br><span class="line">#Maximum number of job workers in job service</span><br><span class="line">max_job_workers = 3</span><br><span class="line"></span><br><span class="line">#Determine whether or not to generate certificate for the registry&apos;s token.</span><br><span class="line">#If the value is on, the prepare script creates new root cert and private key</span><br><span class="line">#for generating token to access the registry. If the value is off the default key/cert will be used.</span><br><span class="line">#This flag also controls the creation of the notary signer&apos;s cert.</span><br><span class="line">customize_crt = on</span><br><span class="line"></span><br><span class="line">#The path of cert and key files for nginx, they are applied only the protocol is set to https</span><br><span class="line">ssl_cert = /data/cert/server.crt</span><br><span class="line">ssl_cert_key = /data/cert/server.key</span><br><span class="line"></span><br><span class="line">#The path of secretkey storage</span><br><span class="line">secretkey_path = /data</span><br><span class="line"></span><br><span class="line">#Admiral&apos;s url, comment this attribute, or set its value to NA when Harbor is standalone</span><br><span class="line">admiral_url = NA</span><br><span class="line"></span><br><span class="line">#NOTES: The properties between BEGIN INITIAL PROPERTIES and END INITIAL PROPERTIES</span><br><span class="line">#only take effect in the first boot, the subsequent changes of these properties</span><br><span class="line">#should be performed on web ui</span><br><span class="line"></span><br><span class="line">#************************BEGIN INITIAL PROPERTIES************************</span><br><span class="line"></span><br><span class="line">#Email account settings for sending out password resetting emails.</span><br><span class="line"></span><br><span class="line">#Email server uses the given username and password to authenticate on TLS connections to host and act as identity.</span><br><span class="line">#Identity left blank to act as username.</span><br><span class="line">email_identity =</span><br><span class="line"></span><br><span class="line">email_server = smtp.mydomain.com</span><br><span class="line">email_server_port = 25</span><br><span class="line">email_username = sample_admin@mydomain.com</span><br><span class="line">email_password = abc</span><br><span class="line">email_from = admin &lt;sample_admin@mydomain.com&gt;</span><br><span class="line">email_ssl = false</span><br><span class="line"></span><br><span class="line">##The initial password of Harbor admin, only works for the first time when Harbor starts.</span><br><span class="line">#It has no effect after the first launch of Harbor.</span><br><span class="line"># 启动Harbor后，管理员UI登录的密码，默认是Harbor12345</span><br><span class="line">harbor_admin_password = Harbor12345</span><br><span class="line"></span><br><span class="line"># 认证方式，这里支持多种认证方式，如LADP、本次存储、数据库认证。默认是db_auth，mysql数据库认证</span><br><span class="line">auth_mode = db_auth</span><br><span class="line"></span><br><span class="line">#The url for an ldap endpoint.</span><br><span class="line">ldap_url = ldaps://ldap.mydomain.com</span><br><span class="line"></span><br><span class="line">#A user&apos;s DN who has the permission to search the LDAP/AD server.</span><br><span class="line">#If your LDAP/AD server does not support anonymous search, you should configure this DN and ldap_search_pwd.</span><br><span class="line">#ldap_searchdn = uid=searchuser,ou=people,dc=mydomain,dc=com</span><br><span class="line"></span><br><span class="line">#the password of the ldap_searchdn</span><br><span class="line">#ldap_search_pwd = password</span><br><span class="line"></span><br><span class="line">#The base DN from which to look up a user in LDAP/AD</span><br><span class="line">ldap_basedn = ou=people,dc=mydomain,dc=com</span><br><span class="line"></span><br><span class="line">#Search filter for LDAP/AD, make sure the syntax of the filter is correct.</span><br><span class="line">#ldap_filter = (objectClass=person)</span><br><span class="line"></span><br><span class="line"># The attribute used in a search to match a user, it could be uid, cn, email, sAMAccountName or other attributes de</span><br><span class="line">pending on your LDAP/AD  ldap_uid = uid</span><br><span class="line"></span><br><span class="line">#the scope to search for users, 1-LDAP_SCOPE_BASE, 2-LDAP_SCOPE_ONELEVEL, 3-LDAP_SCOPE_SUBTREE</span><br><span class="line">ldap_scope = 3</span><br><span class="line"></span><br><span class="line">#Timeout (in seconds)  when connecting to an LDAP Server. The default value (and most reasonable) is 5 seconds.</span><br><span class="line">ldap_timeout = 5</span><br><span class="line"></span><br><span class="line"># 是否开启自注册</span><br><span class="line">self_registration = on</span><br><span class="line"></span><br><span class="line"># Token有效时间，默认30分钟</span><br><span class="line">token_expiration = 30</span><br><span class="line"></span><br><span class="line"># 用户创建项目权限控制，默认是everyone（所有人），也可以设置为adminonly（只能管理员）</span><br><span class="line">project_creation_restriction = everyone</span><br><span class="line"></span><br><span class="line">#Determine whether the job service should verify the ssl cert when it connects to a remote registry.</span><br><span class="line">#Set this flag to off when the remote registry uses a self-signed or untrusted certificate.</span><br><span class="line">verify_remote_cert = on</span><br><span class="line">#************************END INITIAL PROPERTIES************************</span><br></pre></td></tr></table></figure>
+<p>启动 harbor，修改完配置文件后，在的当前目录执行<code>./install.sh</code>，Harbor服务就会根据当期目录下的<code>docker-compose.yml</code>开始下载依赖的镜像，检测并按照顺序依次启动各个服务。</p>
+<p>启动完成后，我们访问刚设置的 hostname 即可，<a href="http://115.159.227.249/，默认是80端口，如果端口占用，我们可以去修改docker-compose.yml文件中，对应服务的端口映射。" target="_blank" rel="noopener">http://115.159.227.249/，默认是80端口，如果端口占用，我们可以去修改docker-compose.yml文件中，对应服务的端口映射。</a></p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/blog/171126/JgL96AjdEc.jpg-1" alt="mark"></p>
+<p>登录 Web Harbor , 输入用户名 admin，默认密码（或已修改密码）登录系统。</p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/blog/171126/b98k9d2jcE.png-1" alt="mark"></p>
+<p>我们可以看到系统各个模块如下：</p>
+<ul>
+<li>项目：新增/删除项目，查看镜像仓库，给项目添加成员、查看操作日志、复制项目等</li>
+<li>日志：仓库各个镜像create、push、pull等操作日志</li>
+<li>系统管理<ul>
+<li>用户管理：新增/删除用户、设置管理员等</li>
+<li>复制管理：新增/删除从库目标、新建/删除/启停复制规则等</li>
+<li>配置管理：认证模式、复制、邮箱设置、系统设置等</li>
+</ul>
+</li>
+<li>其他设置<ul>
+<li>用户设置：修改用户名、邮箱、名称信息</li>
+<li>修改密码：修改用户密码</li>
+</ul>
+</li>
+</ul>
+<p>注意：非系统管理员用户登录，只能看到有权限的项目和日志，其他模块不可见。</p>
+<p>我们要尝试下能不能把自己 Docker 里面的镜像 push 到 Harbor 的 library 里来（默认这个 library 项目是公开的，所有人都可以有读的权限，都不需要 docker login 进来，就可以拉取里面的镜像）。</p>
+<p><strong>注意：</strong></p>
+<p>为了后面留坑，我这里先 在自己的 docker.service 中添加仓库：（这是个坑，建议你先按照我说的做，不然下面可能会一直登录不上）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br><span class="line"></span><br><span class="line">里面的这行修改为：（其实就是添加 --insecure-registry 115.159.227.249 ）</span><br><span class="line">ExecStart=/usr/bin/dockerd --insecure-registry 115.159.227.249</span><br></pre></td></tr></table></figure>
+<p>添加完了后重新启动 docker：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload &amp;&amp; systemctl enable docker &amp;&amp; systemctl start docker</span><br></pre></td></tr></table></figure>
+<p>启动 docker 服务:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<p>登录：（为了测试下能否登录成功）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">admin登录</span><br><span class="line">$ docker login 115.159.227.249</span><br><span class="line">Username: admin</span><br><span class="line">Password:</span><br><span class="line">Login Succeeded</span><br></pre></td></tr></table></figure>
+<p>打 tag 并 push</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:15.10  115.159.227.249/library/ubuntu:15.10		//给我的镜像打个 tag</span><br><span class="line"></span><br><span class="line">docker push  115.159.227.249/library/ubuntu</span><br><span class="line"></span><br><span class="line">The push refers to a repository [115.159.227.249/library/ubuntu]</span><br><span class="line">98d59071f692: Pushed</span><br><span class="line">af288f00b8a7: Pushed</span><br><span class="line">4b955941a4d0: Pushed</span><br><span class="line">f121afdbbd5d: Pushed</span><br><span class="line">15.10: digest: sha256:ec89c4a90f45f5e103860191890f48d8379e0504a2881ff706aef0768dc0321b size: 1150</span><br></pre></td></tr></table></figure>
+<p>上传完毕后，登录Web Harbor，选择项目 library，就可以看到我刚 push 的镜像了。</p>
+<p><img src="http://ohfk1r827.bkt.clouddn.com/blog/171126/0d82GLa1Cb.png-1" alt="mark"></p>
+<p>同理，你也可以测试下从 Harbor pull 镜像到你的 Docker 中去，这里就不继续演示了。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>转载请注明地址为：<a href="http://www.54tianzhisheng.cn/2017/11/26/Docker-harbor/" target="_blank" rel="noopener">http://www.54tianzhisheng.cn/2017/11/26/Docker-harbor/</a></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp3jkmizmpj30o00didgn.jpg" alt=""></p>
+
       
 
       <!-- <div>
   			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
   		</div> -->
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -241,11 +367,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
@@ -254,18 +376,83 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/30/springboot_SpringApplication/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/11/26/Docker-harbor/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/12/02/wx-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          实习圈群里提问小记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/18/flow-control/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于分布式环境下限流系统的设计</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
@@ -273,557 +460,30 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Distributed_lock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/Distributed_lock/">分布式锁看这篇就够了</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2018/04/24/Distributed_lock/" class="archive-article-date">
-  	<time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fqp2lqscrwj31hc0zk46a.jpg" alt="meadow-811339_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Zookeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/Distributed_lock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
-
-
-
-
-
-
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="Docker系列文章（一）：基于 Harbor 搭建 Docker 私有镜像仓库"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    <article id="post-SpringBootApplication-annotation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/19/SpringBootApplication-annotation/">Spring Boot 2.0系列文章(六)：Spring Boot 2.0中SpringBootApplication注解详解</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/19/SpringBootApplication-annotation/" class="archive-article-date">
-  	<time datetime="2018-04-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fqifa86vplj31hc0p0n7e.jpg" alt="nature-3201015_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/19/SpringBootApplication-annotation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-spring_boot2_project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/spring_boot2_project/">Spring Boot 2.0系列文章(五)：Spring Boot 2.0 项目源码结构预览</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/18/spring_boot2_project/" class="archive-article-date">
-  	<time datetime="2018-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fqhraflay7j31hc0zk0z1.jpg" alt="fireworks-2585843_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/18/spring_boot2_project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-springboot2_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/springboot2_code/">Spring Boot 2.0系列文章(四)：Spring Boot 2.0 源码阅读环境搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/springboot2_code/" class="archive-article-date">
-  	<time datetime="2018-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqdma0kpk1j31hc0zkqox.jpg" alt="night-photograph-2183637_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/springboot2_code/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Spring_Boot_2.0_Configuration_Changelog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">Spring Boot 2.0系列文章(三)：Spring Boot 2.0 配置改变</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/" class="archive-article-date">
-  	<time datetime="2018-04-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fqc4n57tj4j31hc0zktmm.jpg" alt="pocket-watch-3156771_1920"></p>
-        
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Spring_Boot_2.0_Configuration_Changelog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-blogs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/27/blogs/">写这么多系列博客，怪不得找不到女朋友</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/27/blogs/" class="archive-article-date">
-  	<time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fprrv5n1p2j31hc0u0tm6.jpg" alt="nature-3054445_1920"></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>好几周没更新博客了，对不断支持我博客的童鞋们说声：“抱歉了！”。自己这段时间确实比较忙，而且还在抽空完成学校的毕业设计。今天晚上抽空把大学期间写过的博客弄一个系列文章合集，算是对大学这四年的一个总结，证明自己没白过。</p>
-        
-          <a class="article-more-a" href="/2018/03/27/blogs/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客合集</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/27/blogs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-SpringBoot2-Migration-Guide" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/06/SpringBoot2-Migration-Guide/">Spring Boot 2.0系列文章(一)：Spring Boot 2.0 迁移指南</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/06/SpringBoot2-Migration-Guide/" class="archive-article-date">
-  	<time datetime="2018-03-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-06</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fp3h0820m2j31hc0zkwxr.jpg" alt=""></p>
-<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>希望本文档将帮助您把应用程序迁移到 Spring Boot 2.0。</p>
-        
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/#more">more >></a>
-        
-      
-
-      <!-- <div>
-  			<img src="/img/wx.jpg"  style="margin: 0 auto;" />
-  		</div> -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SpringBoot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/06/SpringBoot2-Migration-Guide/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -853,8 +513,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
