@@ -115,7 +115,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 	.process ul li{margin:0 0.5em; }
 	
 	.grid figure h2{font: 700 1.5em Roboto,Arial,Helvetica;}
-	figure.effect-oscar figcaption{padding: 12%;}
+	figure.effect-oscar figcaption{padding: 0%;}
 	figure.effect-oscar figcaption::before,figure.effect-chico figcaption::before{top: 20px;right: 20px;bottom: 20px;left: 20px;}
 
 	.partners img{margin: 0 25px 25px 0;}
@@ -146,7 +146,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 	h2.text-center{text-align: left;font-size: 1.7em;}
 	h4 {font: 300 1.2em Roboto,Arial,Helvetica;}
 	#partners h2{padding: 0 1em;} 
-	#works {padding-top: 5em;}
+	#works {padding-top: 0em;}
 
 	.partners{display: block;float: left;}
 	.partners img{width: 120px;}
