@@ -1,171 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>卿先生和谢小姐</title>
-
-<!-- Google fonts -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-
-<!-- font awesome -->
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-<!-- bootstrap -->
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-
-<!-- animate.css -->
-<link rel="stylesheet" href="assets/animate/animate.css" />
-<link rel="stylesheet" href="assets/animate/set.css" />
-
-<!-- gallery -->
-<link rel="stylesheet" href="assets/gallery/blueimp-gallery.min.css">
-
-<!-- favicon -->
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-
-<link rel="stylesheet" href="assets/style.css">
-
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
+<style>
+    .content{padding: 15px;}
+    .content .left{float: left;}
+    .content .right{float: right;}
+    .view{clear: both;}
+    .view p,.input_item{margin: 10px 0;}
+    .input_item input{width: 100px;}
+    .view p span,.content .input_item label{display: inline-block;width: 88px;text-align: right;padding-right: 10px;}
+    #count{width: 80px;line-height: 80px;background-color:red;color: #ffffff;outline-style: none;position: relative;
+    top: 10px;border: none;font-size: 18px;}
+    .radio_box ul{list-style: none;}
+    .radio_box ul li{list-style: none;float: left;border: blue solid 1px;text-align: center;padding: 2px 8px;}
+    .radio_box ul li.active{background-color: blue;color: #ffffff;}
+</style>
 
 <body>
-
-<!-- works -->
-<div id="works"  class=" clearfix grid"> 
-    <figure class="effect-oscar  wowload fadeIn">
-        <img src="images/portfolio/1.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Nature</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/1.jpg" title="正午时分有点热" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/2.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Events</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/2.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/3.jpg" alt="img01"/>
-        <figcaption>
-            <h2>music</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/3.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/4.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Vintage</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/4.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/5.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Typers</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/5.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-     
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/6.jpg" alt="img01"/>
-        <figcaption>
-            <h2>hotel</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/7.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Chinese</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/7.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/8.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Dicrap</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/8.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/9.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Coffee</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/9.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/10.jpg" alt="img01"/>
-        <figcaption>
-            <h2>cameras</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/10.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/11.jpg" alt="img01"/>
-        <figcaption>
-            <h2>design</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/11.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-    
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="images/portfolio/12.jpg" alt="img01"/>
-        <figcaption>
-            <h2>studio</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/12.jpg" title="1" data-gallery>更  多</a></p>            
-        </figcaption>
-    </figure>
-    
-</div>
-
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-    <!-- The container for the modal slides -->
-    <div class="slides"></div>
-    <!-- Controls for the borderless lightbox -->
-    <h3 class="title">Title</h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <!-- The modal dialog, which will be used to wrap the lightbox content -->    
-</div>
-<!-- jquery -->
-<script src="assets/jquery.js"></script>
-
-<!-- wow script -->
-<script src="assets/wow/wow.min.js"></script>
-
-
-<!-- boostrap -->
-<script src="assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
-
-<!-- jquery mobile -->
-<script src="assets/mobile/touchSwipe.min.js"></script>
-<script src="assets/respond/respond.js"></script>
-
-<!-- gallery -->
-<script src="assets/gallery/jquery.blueimp-gallery.min.js"></script>
-
-<!-- custom script -->
-<script src="assets/script.js"></script>
-
+    <div class="content">
+        <div class="count_box">
+            <div class="left">
+                <div class="input_item">
+                    <label for="">高度</label>
+                    <input type="number" name="width">
+                </div>
+                <div class="input_item">
+                    <label for="">宽度</label>
+                    <input type="number" name="height">
+                </div>
+                <div class="input_item">
+                    <label for="">栏杆</label>
+                    <input type="number" name="langan">
+                </div>
+            </div>
+            <div class="right">
+                <button id="count" type="button">计算</button>
+            </div>
+        </div>
+        <div class="view">
+            <p><span>轨道</span><span class="result">0</span></p>
+            <p><span>光企</span><span class="result">0</span></p>
+            <p><span>上下方</span><span class="result">0</span></p>
+            <p><span>玻璃高度</span><span class="result">0</span></p>
+            <p><span>玻璃宽度</span><span class="result">0</span></p>
+            <p><span>定玻璃高度</span><span class="result">0</span></p>
+            <p><span>定玻璃宽度</span><span class="result">0</span></p>
+            <p><span>中柱</span><span class="result">0</span></p>
+        </div>
+    </div>
+    <div class="radio_box">
+        <ul>
+            <li>2滑门</li>
+            <li>4滑门</li>
+            <li>4窗</li>
+            <li>2窗</li>
+            <li>2固</li>
+            <li class="active">4固</li>
+        </ul>
+    </div>
+    <script>
+        $(function(){
+            $('.radio_box ul li').click(function(){s
+                $(this).addClass('active').siblings().removeClass('active');
+            })
+            $('#count').click(function(){
+                var y=$('input[name="height"]').val();
+                var x=$('input[name="width"]').val();
+                var z=$('input[name="langan"]').val();
+                var segIndex=$('.radio_box ul li.active').index();
+                var value1 = y-60; //轨道
+                var value2 = x-56; //光企
+                var value3 = (y-42+78)/2; //上下方
+                var heigth = value2 - 137;
+                var width = value3 -137;
+                switch (segIndex) {
+                    case 0://2 滑门
+                        value1 = y-60; //轨道
+                        value2 = x-56; //光企
+                        value3 = (y-42+78)/2; //上下方
+                        heigth = value2 - 137;
+                        width = value3 -137;
+                        break;
+                    case 1://4滑门
+                        value1 = y-60; //轨道
+                        value2 = x-56; //光企
+                        value3 = (y-42-6+156)/4;//上下方
+                        heigth = value2 - 137;
+                        width = value3 -137;
+                        break;
+                    case 2: //4窗子
+                        value1 = y-30; //轨道
+                        value2 = x-50; //光企
+                        value3 = (y-30+105)/4-71;//上下方
+                        heigth = value2 - 97;
+                        width = value3 - 5;
+                        break;
+                    case 3:// 2窗子
+                        value1 = y-30; //轨道
+                        value2 = x-50; //光企
+                        value3 = (y-30+48)/2-71;//上下方
+                        heigth = value2 - 97;
+                        width = value3 - 5;
+                        break;
+                    case 4: // 2窗固定
+                        value1 = y-30; //轨道
+                        value2 = x-50-z; //光企
+                        value3 = (y-30+48)/2-71;//上下方
+                        heigth = value2 - 97;
+                        width = value3 - 5;
+                        value8Lab = z-25;
+                        value6Lab = z-30;
+                        value7Lab = (y-60-25)/2-5;
+                        break;
+                    case 5: // 4窗固定
+                        value1 = y-30; //轨道
+                        value2 = x-50-z; //光企
+                        value3 = (y-30+105)/4-71;//上下方
+                        heigth = value2 - 97;
+                        width = value3 - 5;
+                        value8Lab = z-25;
+                        value6Lab = z-30;
+                        value7Lab = (y-60-75)/4-5;
+                        break;
+                    default:
+                        break;
+                }
+                $('.view p').eq(0).find('.result').text(value1);
+                $('.view p').eq(1).find('.result').text(value2);
+                $('.view p').eq(2).find('.result').text(value3);
+                $('.view p').eq(3).find('.result').text(heigth);
+                $('.view p').eq(4).find('.result').text(width);
+                $('.view p').eq(5).find('.result').text(value6Lab);
+                $('.view p').eq(6).find('.result').text(value7Lab);
+                $('.view p').eq(7).find('.result').text(value8Lab);
+            })
+        })
+    </script>
 </body>
 </html>
+
+    
+    
+    
+    
+    
+
