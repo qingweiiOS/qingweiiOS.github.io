@@ -96,50 +96,50 @@
                         width = value3 -137;
                         break;
                     case 2: //4窗子
-                        value1 = y-30; //轨道
-                        value2 = x-50; //光企
-                        value3 = (y-30+105)/4-71;//上下方
+                        value1 = y-40; //轨道
+                        value2 = x-77; //光企
+                        value3 = (y-40+110)/4-90;//上下方
                         heigth = value2 - 97;
                         width = value3 - 5;
                         break;
                     case 3:// 2窗子
-                        value1 = y-30; //轨道
-                        value2 = x-50; //光企
-                        value3 = (y-30+48)/2-71;//上下方
+                        value1 = y-40; //轨道
+                        value2 = x-77; //光企
+                        value3 = (y-40+55)/2-90;//上下方
                         heigth = value2 - 97;
                         width = value3 - 5;
                         break;
                     case 4: // 2窗固定
-                        value1 = y-30; //轨道
-                        value2 = x-50-z; //光企
-                        value3 = (y-30+48)/2-71;//上下方
+                        value1 = y-40; //轨道
+                        value2 = x-77-z; //光企
+                        value3 = (y-40+55)/2-90;//上下方
                         heigth = value2 - 97;
                         width = value3 - 5;
-                        value8Lab = z-25;
-                        value6Lab = z-30;
-                        value7Lab = (y-60-25)/2-5;
+                        value8Lab = z-43;
+                        value6Lab = z-48;
+                        value7Lab = (y-70-30)/2-5;
                         break;
                     case 5: // 4窗固定
-                        value1 = y-30; //轨道
-                        value2 = x-50-z; //光企
-                        value3 = (y-30+105)/4-71;//上下方
+                        value1 = y-40; //轨道
+                        value2 = x-77-z; //光企
+                        value3 = (y-40+110)/4-90; //上下方
                         heigth = value2 - 97;
                         width = value3 - 5;
-                        value8Lab = z-25;
-                        value6Lab = z-30;
-                        value7Lab = (y-60-75)/4-5;
+                        value8Lab = z-43;
+                        value6Lab = z-48;
+                        value7Lab = (y-70-90)/4-5;
                         break;
                     default:
                         break;
                 }
-                $('.view p').eq(0).find('.result').text(value1);
-                $('.view p').eq(1).find('.result').text(value2);
-                $('.view p').eq(2).find('.result').text(value3);
-                $('.view p').eq(3).find('.result').text(heigth);
-                $('.view p').eq(4).find('.result').text(width);
-                $('.view p').eq(5).find('.result').text(value6Lab);
-                $('.view p').eq(6).find('.result').text(value7Lab);
-                $('.view p').eq(7).find('.result').text(value8Lab);
+                $('.view p').eq(0).find('.result').text(value1);//轨道
+                $('.view p').eq(1).find('.result').text(value2);//光企
+                $('.view p').eq(2).find('.result').text(value3);//上下方
+                $('.view p').eq(3).find('.result').text(heigth);//官渡
+                $('.view p').eq(4).find('.result').text(width);//高度
+                $('.view p').eq(5).find('.result').text(value6Lab);//定高度
+                $('.view p').eq(6).find('.result').text(value7Lab);//定宽度
+                $('.view p').eq(7).find('.result').text(value8Lab);//中柱
             })
         })
     </script>
